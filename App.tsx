@@ -6,13 +6,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Home from './components/Home';
 import TrainMap from './components/TrainMap';
+import Station from './components/Station';
 
 
 const Tab = createBottomTabNavigator();
 
 const routeIcons = {
   "Tåg": "train",
-  "Karta": "map"
+  "Karta": "map",
+  "Stationer": "trail-sign"
 }
 
 export default function App() {
@@ -30,6 +32,7 @@ export default function App() {
         >
           <Tab.Screen name="Tåg" component={Home}/>
           <Tab.Screen name="Karta" component={TrainMap}/>
+          <Tab.Screen name="Stationer" component={Station}/>
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

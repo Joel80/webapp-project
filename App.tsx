@@ -17,6 +17,7 @@ const routeIcons = {
   "Stationer": "trail-sign"
 }
 
+
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>

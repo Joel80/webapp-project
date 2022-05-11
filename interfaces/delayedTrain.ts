@@ -8,5 +8,9 @@ export default interface delayedTrains {
     FromLocationName: string,
     ToLocationName: string
     FromLocation: string[] | null,
-    ToLocation: string[] | null
+    ToLocation: string[] | null,
+    FromLat: number,
+    FromLong: number,
+    ToLat: number,
+    ToLong: number
 }

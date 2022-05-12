@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
+import { Circle } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import delayedTrainsModel from '../models/delayedTrains';
@@ -17,13 +18,26 @@ export default function TrainMap() {
     
     const [trains, setTrains] = useState<DelayedTrain[]>([]);
 
-    const [userMarker, setUserMarker] = useState(<Marker
-        coordinate={{ latitude: defaultLatitude, longitude: defaultLongitude }}
-        title="Förvald användarmarkör"
-    />)
+    const [userMarker, setUserMarker] = useState(
+        <Marker
+            coordinate={{ latitude: defaultLatitude, longitude: defaultLongitude }}
+            title="Förvald användarmarkör"
+        />
+    );
 
     const [errorMessage, setErrorMessage] = useState('');
     
+    const [circle, setCircle] = useState(
+        <Circle 
+            center={{latitude: defaultLatitude, longitude: defaultLongitude}}
+            radius={0}
+            fillColor={'rgba(255,0,0, 0.2)'}
+            strokeColor={'rgba(255,0,0, 0.5)'}
+        />
+    );
+
+
+
     useEffect( () => {
         (async () => {
             setTrains(await delayedTrainsModel.getDelayedTrains());
@@ -32,20 +46,38 @@ export default function TrainMap() {
 
 
     const markers = trains.map((train, index) => 
-              <Marker
-                  key={index}
-                  coordinate={{ latitude: train.FromLat,  longitude: train.FromLong += index/1000000 }}
-                  title={train.FromLocationName}
-                  identifier={train.FromLocationName}
-                  description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
-                  opacity={1.0}
-                  flat={true}
-                  rotation={1.0}
-              />
-            );
+        <Marker
+        key={index}
+        coordinate={{ latitude: train.FromLat,  longitude: train.FromLong += index/1000000 }}
+        title={train.FromLocationName}
+        identifier={train.FromLocationName}
+        description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
+        onPress={() => {
+            console.log("Pressing the marker");
+            let reach = calculateReach(train.DelayedBy);
+            if (reach < 0) {
+                reach = 0;
+            }
+
+            console.log(reach);
+            const walkingCircle = 
+            <Circle 
+                center={{latitude: train.FromLat, longitude: train.FromLong += index/1000000 }}
+                radius={reach}
+                fillColor={'rgba(255,0,0, 0.2)'}
+                strokeColor={'rgba(255,0,0, 0.5)'}
+            />
+            //console.log(walkingCircle);
+            setCircle(walkingCircle);
+
+        }}
+        />
+    );
     //console.log(markers);
 
-          
+    function calculateReach(delayTime: number): number {
+        return (delayTime*100/2) - 5;
+    }     
 
     useEffect ( () => {
         (async () => {
@@ -68,6 +100,11 @@ export default function TrainMap() {
                 />);
         }) ();
     }, []);
+
+
+    /* useEffect( () => {
+
+    }, [circle]) */
 
     // UseEffect for markers, run when markers array changes
  /*    useEffect ( () => {
@@ -96,23 +133,30 @@ export default function TrainMap() {
 
        
     return (
-        
-            <View style={styles.container}>
-                <MapView
-                        key={markers.length}                   
-                        style={styles.map}
-                        initialRegion={{
-                            latitude: defaultLatitude,
-                            longitude:defaultLongitude,
-                            latitudeDelta: defaultLatitudeDelta,
-                            longitudeDelta: defaultLongitudeDelta,
-                        }}
-                        ref={mapRef}
-                    >
-                   {markers}
-                   {userMarker}
-                </MapView>
-            </View>
+        <View style={styles.container}>
+            <MapView
+                key={markers.length}                   
+                style={styles.map}
+                initialRegion={{
+                    latitude: defaultLatitude,
+                    longitude:defaultLongitude,
+                    latitudeDelta: defaultLatitudeDelta,
+                    longitudeDelta: defaultLongitudeDelta,
+                }}
+                ref={mapRef}
+                
+            >
+                {/* <Circle 
+                    center={{latitude: defaultLatitude, longitude: defaultLongitude}}
+                    radius={20000}
+                    fillColor={'rgba(255,0,0, 0.2)'}
+                    strokeColor={'rgba(255,0,0, 0.5)'}
+                /> */}
+                {circle}
+                {markers}
+                {userMarker}
+            </MapView>
+        </View>
     );   
 };
 

@@ -7,8 +7,6 @@ const trains = {
         //console.log(response);
         const result = await response.json();
 
-        //console.log(result.data);
-
         return result.data;
     },
 };

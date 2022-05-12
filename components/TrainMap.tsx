@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-//import * as Location from 'expo-location';
+import * as Location from 'expo-location';
 import delayedTrainsModel from '../models/delayedTrains';
 import DelayedTrain from '../interfaces/delayedTrain';
 
@@ -15,7 +15,14 @@ export default function TrainMap() {
     // Ref to MapViev, initialize mapRef.current to null
     const mapRef  = useRef<MapView>(null);
     
-     const [trains, setTrains] = useState<DelayedTrain[]>([]);
+    const [trains, setTrains] = useState<DelayedTrain[]>([]);
+
+    const [userMarker, setUserMarker] = useState(<Marker
+        coordinate={{ latitude: defaultLatitude, longitude: defaultLongitude }}
+        title="Förvald användarmarkör"
+    />)
+
+    const [errorMessage, setErrorMessage] = useState('');
     
     useEffect( () => {
         (async () => {
@@ -27,41 +34,20 @@ export default function TrainMap() {
     const markers = trains.map((train, index) => 
               <Marker
                   key={index}
-                  coordinate={{ latitude: train.FromLat, longitude: train.FromLong }}
+                  coordinate={{ latitude: train.FromLat,  longitude: train.FromLong += index/1000000 }}
                   title={train.FromLocationName}
                   identifier={train.FromLocationName}
+                  description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
                   opacity={1.0}
                   flat={true}
                   rotation={1.0}
               />
             );
-    console.log(markers);
-
-/*     let train = trains[0];
-
-    const markers = [<Marker
-      key={1}
-      coordinate={{ latitude: 16.391720410683643, longitude:  61.349484744524425 }}
-      title={"Bollnäs"}
-      identifier={"Bollnäs"}
-  />]
-
-  console.log(markers) */
-
-
- /*    const markers = [<Marker
-                  coordinate={{ latitude: 60.0, longitude: 15.0}}
-                  title={"Pin"}
-                  identifier={"Pin"}
-                />, <Marker
-                coordinate={{ latitude: NaN, longitude: 15.0}}
-                title={"Pin"}
-                identifier={"Pin"}
-              />]; */
+    //console.log(markers);
 
           
 
-    /* useEffect ( () => {
+    useEffect ( () => {
         (async () => {
             const { status } = await Location.requestForegroundPermissionsAsync();
             if (status !=='granted') {
@@ -71,7 +57,7 @@ export default function TrainMap() {
 
             const currentLocation = await Location.getCurrentPositionAsync({});
 
-            setLocationMarker(<Marker 
+            setUserMarker(<Marker 
                     coordinate= {{
                         latitude: currentLocation.coords.latitude,
                         longitude: currentLocation.coords.longitude
@@ -80,12 +66,8 @@ export default function TrainMap() {
                     pinColor="blue"
                     identifier="userMarker"
                 />);
-            // Add marker identifier to markers array
-            setMarkers(markers => [...markers, "userMarker"]);
-            console.log("User location loaded");
-            console.log(markers);
         }) ();
-    }, []); */
+    }, []);
 
     // UseEffect for markers, run when markers array changes
  /*    useEffect ( () => {
@@ -128,6 +110,7 @@ export default function TrainMap() {
                         ref={mapRef}
                     >
                    {markers}
+                   {userMarker}
                 </MapView>
             </View>
     );   

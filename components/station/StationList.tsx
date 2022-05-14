@@ -15,7 +15,8 @@ function StationList() {
     useEffect( () => {
         (async () => {
             setStations(await stationModel.getStations());
-            setFavoriteStations(await stationModel.getStationsByLocationSignatures(["A"]));
+            setFavoriteStations(await stationModel.getFavoriteStationsData());
+
         })();
 
         
@@ -37,7 +38,7 @@ function StationList() {
         <View key={index}>
                 
             <Text>
-                { station.AdvertisedLocationName}, { station.LocationSignature}, { station.Geometry.WGS84 }
+                { station.AdvertisedLocationName}
             </Text>
 
         </View>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Text, ScrollView, StyleSheet, View, Pressable } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, Pressable, Button } from 'react-native';
 import Station from '../../interfaces/station';
 import stationModel from '../../models/stations';
 import authModel from '../../models/auth';
 
 
 
-function StationList() {
+export default function StationList({setIsLoggedIn, navigation}) {
     
     const [stations, setStations] = useState<Station[]>([]);
 
@@ -23,44 +23,39 @@ function StationList() {
     }, []);
    
 
-   /*  const list = stations.map((station, index) => 
-    
-        <View key={index}>
-            
-            <Text>
-                { station.AdvertisedLocationName}, { station.LocationSignature}, { station.Geometry.WGS84 }
-            </Text>
-
-        </View>
-    ); */
-
-    const favorites = favoriteStations.map((station, index) =>
-        <View key={index}>
-                
-            <Text>
-                { station.AdvertisedLocationName}
-            </Text>
-
-        </View>
+    const favorites = favoriteStations.map((station, index) =>               
+        <Button
+            key={index}
+            title={ station.AdvertisedLocationName }
+            onPress= { () => {
+                navigation.navigate('Details', {
+                    station: station
+                });
+            }}
+        />
     );
 
 
      return (
-  
-           <View>            
-               {/* {list} */}
-               {favorites}
-            </View>
-
+        <ScrollView>
+            {favorites}
+            <Pressable style={() => [{}]}
+                onPress= { () => {
+                    authModel.logout();
+                    setIsLoggedIn(false);
+                }}>
+                <Text>Logga ut</Text>
+            </Pressable>
+        </ScrollView>
         
         
     );   
 }
 
-export default function Stations( {setIsLoggedIn} ) {
+/* export default function Stations( {setIsLoggedIn, navigation} ) {
     return (
         <ScrollView>
-            <StationList />
+            <StationList navigation={navigation}/>
             <Pressable style={() => [{}]}
                     onPress= { () => {
                         authModel.logout();
@@ -71,11 +66,4 @@ export default function Stations( {setIsLoggedIn} ) {
         </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-  
-    },
-  });
+ */

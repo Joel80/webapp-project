@@ -54,20 +54,22 @@ const trains = {
     
         const result = await response.json();
 
-        console.log(result.data);
+        //console.log(result.data);
 
         const stationArray = [];
 
         for (const obj of  result.data) {
             const stationData = JSON.parse(obj.artefact);
 
-            console.log(stationData.data);
+            //console.log(stationData);
 
-            for (const station of stationData.data) {
+            stationArray.push(stationData);
+
+           /*  for (const station of stationData) {
                 console.log(station);
-                stationArray.push(station);
+                stationArray.push(stationData);
             }
-
+            */
             
 
         }

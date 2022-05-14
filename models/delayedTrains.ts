@@ -121,10 +121,11 @@ const trains = {
            
             
         }
+        //console.log(`Model array: ${delayedTrainsArray}`);
 
         return delayedTrainsArray;
     },
-    getDelayedTrainsFromStation: async function getDelayedTrainsFromStation(stationLocationSignature: string) {
+    getDelayedTrainsFromStation: async function getDelayedTrainsFromStation(station: Station) {
         console.log("Calling getDelayedTrainsFromStation");
 
         const response = await fetch(`${config.base_url}/delayed`);
@@ -132,10 +133,6 @@ const trains = {
         const result = await response.json();
 
         const trains: Train[] = result.data;
-
-        const stations: Station[] = await stationModel.getStations();
-
-        const station = stations.find(station => station.LocationSignature === stationLocationSignature);
 
         let trainFromLocationName: string = "";
 
@@ -160,43 +157,42 @@ const trains = {
 
         for (const train of trains) {
             if (train.FromLocation !== undefined && station !== undefined) {
+               
                 if (station.LocationSignature === train.FromLocation[0].LocationName) {
-                    if (station.LocationSignature === train.FromLocation[0].LocationName) {
-                        //console.log(station.LocationSignature, train.AdvertisedTrainIdent);
-                        trainFromLocationName = station.AdvertisedLocationName;
-                        trainFromCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
+                    //console.log(station.LocationSignature, train.AdvertisedTrainIdent);
+                    trainFromLocationName = station.AdvertisedLocationName;
+                    trainFromCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
 
-                        if (trainFromCoords && parseFloat(trainFromCoords[0]) !== NaN && parseFloat(trainFromCoords[1]) !== NaN) {
-                            trainFromLong = parseFloat(trainFromCoords[0]);
-                            trainFromLat = parseFloat(trainFromCoords[1]);
-                            
-                        } else {
-                            trainFromLat = -0.0;
-                            trainFromLong = -0.0;
-                        }
+                    if (trainFromCoords && parseFloat(trainFromCoords[0]) !== NaN && parseFloat(trainFromCoords[1]) !== NaN) {
+                        trainFromLong = parseFloat(trainFromCoords[0]);
+                        trainFromLat = parseFloat(trainFromCoords[1]);
+                        
+                    } else {
+                        trainFromLat = -0.0;
+                        trainFromLong = -0.0;
                     }
-                    
-                    let dateEstimated = new Date(train.EstimatedTimeAtLocation);
-                    
-                    let dateAdvertised = new Date(train.AdvertisedTimeAtLocation);
-
-                    trainDelayedBy = (dateEstimated.valueOf() - dateAdvertised.valueOf()) / 60000;
-
                 }
+                
+                let dateEstimated = new Date(train.EstimatedTimeAtLocation);
+                
+                let dateAdvertised = new Date(train.AdvertisedTimeAtLocation);
 
-                if (train.ToLocation !== undefined && station !== undefined) {
-                    if (station.LocationSignature === train.ToLocation[0].LocationName) {
-                        trainToLocationName = station.AdvertisedLocationName;
-                        trainToCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
-                        if (trainToCoords && parseFloat(trainToCoords[0]) !== NaN && parseFloat(trainToCoords[1]) != NaN) {
-                            trainToLong = parseFloat(trainToCoords[0]);
-                            trainToLat = parseFloat(trainToCoords[1]);
-                        } else {
-                            trainToLat = -0.0;
-                            trainToLong = -0.0;
-                        }
+                trainDelayedBy = (dateEstimated.valueOf() - dateAdvertised.valueOf()) / 60000;
+
+            }
+
+            if (train.ToLocation !== undefined && station !== undefined) {
+                if (station.LocationSignature === train.ToLocation[0].LocationName) {
+                    trainToLocationName = station.AdvertisedLocationName;
+                    trainToCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
+                    if (trainToCoords && parseFloat(trainToCoords[0]) !== NaN && parseFloat(trainToCoords[1]) != NaN) {
+                        trainToLong = parseFloat(trainToCoords[0]);
+                        trainToLat = parseFloat(trainToCoords[1]);
+                    } else {
+                        trainToLat = -0.0;
+                        trainToLong = -0.0;
                     }
-                }               
+                }
             }
 
             let delayedTrain: delayedTrainInterface = {
@@ -214,17 +210,17 @@ const trains = {
                 FromLong: trainFromLong,
                 ToLat: trainToLat,
                 ToLong: trainToLong,
-                DelayedBy: trainDelayedBy, 
+                DelayedBy: trainDelayedBy,
             };
-            // Only push delayed trains with a from latitude to array
-            if (delayedTrain.FromLat !== -0.0) {
-                delayedTrainsArray.push(delayedTrain);
-            }
-
+            
+            delayedTrainsArray.push(delayedTrain);
         }
 
         
-        
+        //console.log(`Model array: ${delayedTrainsArray}`);
+
+        return delayedTrainsArray;
+  
     },
 };
 

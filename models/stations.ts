@@ -1,6 +1,7 @@
 import config from '../config/config.json';
 import authConfig from '../config/authConfig.json';
 import storage from "./storage";
+import station from "../interfaces/station";
 
 const trains = {
     getStations: async function getStations() {
@@ -41,19 +42,70 @@ const trains = {
 
     },
     getFavoriteStationsData: async function getFavoriteStationsData() {
-        console.log("Getting invoices");
+        console.log("Getting user data");
         const tokenAndData = await storage.readToken();
         const token = tokenAndData.token;
         console.log(`token: ${token}`)
-        const response = await fetch(`${authConfig.base_url}/invoices?api_key=${authConfig.api_key}`, {
+        const response = await fetch(`${authConfig.base_url}/data?api_key=${authConfig.api_key}`, {
             headers: {
                 'x-access-token': token
             }
         });
+    
         const result = await response.json();
 
-        console.log(`data: ${result.data}`);
-        return result.data;
+        console.log(result.data);
+
+        const stationArray = [];
+
+        for (const obj of  result.data) {
+            const stationData = JSON.parse(obj.artefact);
+
+            console.log(stationData.data);
+
+            for (const station of stationData.data) {
+                console.log(station);
+                stationArray.push(station);
+            }
+
+            
+
+        }
+
+        //console.log(`data: ${result.data}`);
+        return stationArray;
+    },
+    createFavoriteStationsData: async function createFavoriteStationsData(station: station) {
+        console.log("Creating user data");
+        station.api_key = authConfig.api_key;
+        const artefact = JSON.stringify(station);
+        const tokenAndData = await storage.readToken();
+        const token = tokenAndData.token;
+        console.log(`token: ${token}`);
+
+        try {
+            const response = await fetch(`${authConfig.base_url}/data`, {
+                body: artefact,
+                headers: {
+                    'x-access-token': token,
+                    'content-type': 'application/json'
+                },
+                method: 'POST'
+            });
+
+            const result = await response.json();
+
+            console.log(`data: ${result.data}`);
+            return result.data;
+
+        } catch (error) {
+            console.log("Could not create station data");
+            console.log(error);
+        }
+        
+        
+        
+
     }
 };
 

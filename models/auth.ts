@@ -35,6 +35,8 @@ const auth = {
                 type: "danger" as MessageType,
             };
         }
+
+        console.log (result.data.token);
         
         await storage.storeToken(result.data.token);
 

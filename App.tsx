@@ -6,19 +6,31 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Home from './components/Home';
 import TrainMap from './components/TrainMap';
-import Station from './components/Station';
-
+import Station from './components/station/Station';
+import Auth from './components/auth/Auth';
+import { useState, useEffect } from 'react';
+import authModel from './models/auth';
+import FlashMessage from 'react-native-flash-message';
 
 const Tab = createBottomTabNavigator();
 
 const routeIcons = {
   "Tåg": "train",
   "Karta": "map",
-  "Stationer": "trail-sign"
+  "Stationer": "heart",
+  "Logga in": "lock-closed"
 }
 
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      setIsLoggedIn(await authModel.loggedIn())
+    })();   
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
@@ -33,10 +45,18 @@ export default function App() {
         >
           <Tab.Screen name="Tåg" component={Home}/>
           <Tab.Screen name="Karta" component={TrainMap}/>
-          <Tab.Screen name="Stationer" component={Station}/>
+          {isLoggedIn ?
+            <Tab.Screen name="Stationer">
+               { () => <Station setIsLoggedIn={setIsLoggedIn}/>}
+            </Tab.Screen> :
+            <Tab.Screen name="Logga in">
+              { () => <Auth setIsLoggedIn={setIsLoggedIn}/>}
+            </Tab.Screen>
+          }
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
+      <FlashMessage position="top" />
     </SafeAreaView>
   );
 }

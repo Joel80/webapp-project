@@ -76,7 +76,8 @@ export default function TrainMap() {
     //console.log(markers);
 
     function calculateReach(delayTime: number): number {
-        return (delayTime*100/2) - 5;
+        delayTime -= 5;
+        return (delayTime*100/2);
     }     
 
     useEffect ( () => {

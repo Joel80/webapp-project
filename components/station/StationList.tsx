@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Text, ScrollView, StyleSheet, View, Pressable, Button } from 'react-native';
-import Station from '../../interfaces/station';
+import station from '../../interfaces/station';
 import stationModel from '../../models/stations';
 import authModel from '../../models/auth';
 
@@ -8,9 +8,9 @@ import authModel from '../../models/auth';
 
 export default function StationList({setIsLoggedIn, navigation}) {
     
-    const [stations, setStations] = useState<Station[]>([]);
+    const [stations, setStations] = useState<station[]>([]);
 
-    const [favoriteStations, setFavoriteStations] = useState<Station[]>([]);
+    const [favoriteStations, setFavoriteStations] = useState<station[]>([]);
     
     useEffect( () => {
         (async () => {
@@ -39,6 +39,13 @@ export default function StationList({setIsLoggedIn, navigation}) {
      return (
         <ScrollView>
             {favorites}
+            <Button
+            title={ 'Lägg till ny station' }
+            onPress= { () => {
+                navigation.navigate('Form', {
+                });
+            }}
+        />
             <Pressable style={() => [{}]}
                 onPress= { () => {
                     authModel.logout();
@@ -51,19 +58,3 @@ export default function StationList({setIsLoggedIn, navigation}) {
         
     );   
 }
-
-/* export default function Stations( {setIsLoggedIn, navigation} ) {
-    return (
-        <ScrollView>
-            <StationList navigation={navigation}/>
-            <Pressable style={() => [{}]}
-                    onPress= { () => {
-                        authModel.logout();
-                        setIsLoggedIn(false);
-                    }}>
-                    <Text>Logga ut</Text>
-                </Pressable>
-        </ScrollView>
-    )
-}
- */

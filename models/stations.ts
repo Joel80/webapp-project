@@ -79,15 +79,25 @@ const trains = {
     },
     createFavoriteStationsData: async function createFavoriteStationsData(station: station) {
         console.log("Creating user data");
-        station.api_key = authConfig.api_key;
-        const artefact = JSON.stringify(station);
+        
         const tokenAndData = await storage.readToken();
         const token = tokenAndData.token;
         console.log(`token: ${token}`);
+        const api_key = authConfig.api_key
+        const artefact = JSON.stringify(station);
+        const data = {
+            artefact: artefact,
+            api_key: api_key
+
+        };
+
+       
+       //const data = JSON.stringify(station);
+        console.log(JSON.stringify(data));
 
         try {
             const response = await fetch(`${authConfig.base_url}/data`, {
-                body: artefact,
+                body: JSON.stringify(data),
                 headers: {
                     'x-access-token': token,
                     'content-type': 'application/json'
@@ -96,17 +106,12 @@ const trains = {
             });
 
             const result = await response.json();
-
-            console.log(`data: ${result.data}`);
-            return result.data;
+            console.log(result);
 
         } catch (error) {
             console.log("Could not create station data");
             console.log(error);
         }
-        
-        
-        
 
     }
 };

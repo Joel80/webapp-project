@@ -1,4 +1,4 @@
-export default interface delayedTrains {
+export default interface delayedTrain {
     ActivityId: string,
     ActivityType: string,
     AdvertisedTimeAtLocation: string,

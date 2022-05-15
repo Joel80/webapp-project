@@ -1,4 +1,4 @@
-export default interface Train {
+export default interface train {
     ActivityId: string,
     ActivityType: string,
     AdvertisedTimeAtLocation: string,

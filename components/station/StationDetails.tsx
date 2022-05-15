@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import delayedTrainsModel from '../../models/delayedTrains';
-import DelayedTrain from '../../interfaces/delayedTrain';
+import delayedTrain from '../../interfaces/delayedTrain';
 
 export default function StationDetails({route}) {
     //console.log(route);
@@ -9,16 +9,16 @@ export default function StationDetails({route}) {
 
     //console.log(station);
 
-    const [delayedTrainsAtStation, setDelayedTrainsAtStation] = useState<DelayedTrain[]>([]);
-
+    const [delayedTrainsAtStation, setDelayedTrainsAtStation] = useState<delayedTrain[]>([]);
 
     useEffect(() => {
         (async () => {
-            setDelayedTrainsAtStation(await delayedTrainsModel.getDelayedTrainsFromStation(station));
+            setDelayedTrainsAtStation(await delayedTrainsModel.getDelayedTrains());
         })();
     }, []);
 
-    const trains = delayedTrainsAtStation.map((train, index) => 
+    const trains = delayedTrainsAtStation.filter(train => train.FromLocationName === station.AdvertisedLocationName)
+        .map((train, index) => 
         <Text key={index}>{train.AdvertisedTrainIdent}</Text>
     );
 

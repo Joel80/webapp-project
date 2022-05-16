@@ -17,6 +17,7 @@ export default function StationDetails({route}) {
         })();
     }, []);
 
+    // TODO: change to ToLocationName?? check assignment again
     const trains = delayedTrainsAtStation.filter(train => train.FromLocationName === station.AdvertisedLocationName)
         .map((train, index) => 
         <Text key={index}>{train.AdvertisedTrainIdent}</Text>

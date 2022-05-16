@@ -11,16 +11,37 @@ import Auth from './components/auth/Auth';
 import { useState, useEffect } from 'react';
 import authModel from './models/auth';
 import FlashMessage from 'react-native-flash-message';
+import { DefaultTheme, Provider as PaperProvider, Appbar } from 'react-native-paper';
+
 
 const Tab = createBottomTabNavigator();
 
 const routeIcons = {
-  "Tåg": "train",
+  "Tåg": "time",
   "Karta": "map",
   "Stationer": "heart",
   "Logga in": "lock-closed"
 }
 
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#fff',
+    accent: '#f1c40f',
+  },
+};
+
+function appBarHeader() {
+  return (
+    <Appbar.Header>
+      {/* <Appbar.Content title="Tåg" /> */}
+      <Appbar.Action color='#217cff' icon="menu"  />
+    </Appbar.Header>
+  );
+}
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
@@ -32,32 +53,62 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
-            let iconName = routeIcons[route.name] || "alert";
-            return <Ionicons name={iconName} size={size} color={color} />
-          },
-          tabBarInactiveTintColor: "grey",
-          tabBarActiveTintColor: "blue",
-        })}
-        >
-          <Tab.Screen name="Tåg" component={Home}/>
-          <Tab.Screen name="Karta" component={TrainMap}/>
-          {isLoggedIn ?
-            <Tab.Screen name="Stationer">
-               { () => <Station setIsLoggedIn={setIsLoggedIn}/>}
-            </Tab.Screen> :
-            <Tab.Screen name="Logga in">
-              { () => <Auth setIsLoggedIn={setIsLoggedIn}/>}
-            </Tab.Screen>
-          }
-        </Tab.Navigator>
-      </NavigationContainer>
-      <StatusBar style="auto" />
-      <FlashMessage position="top" />
-    </SafeAreaView>
+    <PaperProvider theme={theme}>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+              let iconName = routeIcons[route.name] || "alert";
+              return <Ionicons name={iconName} size={size} color={color} />
+            },
+            tabBarInactiveTintColor: "grey",
+            tabBarActiveTintColor: "#217cff",
+            /* tabBarLabelStyle: {fontSize: 30} */
+           /*  headerTitle: "Försenade tåg",
+            headerTitleAlign: "left",
+            headerTitleStyle: {fontSize: 30} */
+          })}
+          >
+            <Tab.Screen name="Tåg" component={Home}
+                options={ 
+                    {
+                        headerStyle: {},
+                        headerTitle: "Tågförseningar", 
+                        headerShown: true,
+                        headerTitleAlign: "left",
+                        headerTitleStyle: {fontSize: 30, fontWeight: 'bold'},
+                        
+                        headerRight: () => 
+                            <View>
+                                <Ionicons name="menu" color={"#217cff"} size={30}/>
+                            </View>
+                        ,
+                        headerRightContainerStyle: {margin: 1, paddingRight: 15, paddingBottom: 15}
+                            
+                        
+                        
+                    }    
+                }
+                
+            />
+            
+            <Tab.Screen name="Karta" component={TrainMap}
+                options={{headerShown: false,}}
+            />
+            {isLoggedIn ?
+                <Tab.Screen name="Stationer">
+                  { () => <Station setIsLoggedIn={setIsLoggedIn}/>}
+                </Tab.Screen> :
+                <Tab.Screen name="Logga in">
+                  { () => <Auth setIsLoggedIn={setIsLoggedIn}/>}
+                </Tab.Screen>
+            }
+          </Tab.Navigator>
+        </NavigationContainer>
+        <StatusBar style="auto" />
+        <FlashMessage position="top" />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
@@ -65,6 +116,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
 });

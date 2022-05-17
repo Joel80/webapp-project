@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import authModel from './models/auth';
 import FlashMessage from 'react-native-flash-message';
 import { DefaultTheme, Provider as PaperProvider, Appbar } from 'react-native-paper';
+import TrainViewHeader from './components/TrainViewHeader';
 
 
 const Tab = createBottomTabNavigator();
@@ -63,31 +64,42 @@ export default function App() {
             },
             tabBarInactiveTintColor: "grey",
             tabBarActiveTintColor: "#217cff",
-            /* tabBarLabelStyle: {fontSize: 30} */
-           /*  headerTitle: "Försenade tåg",
-            headerTitleAlign: "left",
-            headerTitleStyle: {fontSize: 30} */
           })}
           >
-            <Tab.Screen name="Tåg" component={Home}
+            <Tab.Screen name="Tåg" component={Home} 
                 options={ 
                     {
+                        /* header: () => <TrainViewHeader />, */
                         headerStyle: {},
                         headerTitle: "Tågförseningar", 
                         headerShown: true,
-                        headerTitleAlign: "left",
-                        headerTitleStyle: {fontSize: 30, fontWeight: 'bold'},
+                        //headerTitleAlign: "left",
+                        //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
                         
                         headerRight: () => 
+                        <View style={{flexDirection: 'row'}} >
                             <View>
-                                <Ionicons name="menu" color={"#217cff"} size={30}/>
+                                <Ionicons name="navigate-outline" color={"#217cff"} size={25}/>
                             </View>
+
+                            <View style={{marginLeft: 20}}>
+                                <Ionicons  name="list-outline" color={"#217cff"} size={25}/>
+                            </View>
+                        </View>
                         ,
-                        headerRightContainerStyle: {margin: 1, paddingRight: 15, paddingBottom: 15}
-                            
+                        headerRightContainerStyle: {margin: 1, paddingRight: 15, paddingBottom: 15},
+
+                        headerLeft: () => 
+                        <View style={{flexDirection: 'row'}} >
+                            <View>
+                                <Ionicons name="heart-outline" color={"#217cff"} size={25}/>
+                            </View>
+                        </View>
+                        ,
+                        headerLeftContainerStyle: {margin: 1, paddingLeft: 15, paddingBottom: 15},
                         
                         
-                    }    
+                    }                    
                 }
                 
             />

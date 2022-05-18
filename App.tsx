@@ -2,9 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Home from './components/Home';
+import Train from './components/train/Train';
 import TrainMap from './components/TrainMap';
 import Station from './components/station/Station';
 import Auth from './components/auth/Auth';
@@ -12,10 +12,11 @@ import { useState, useEffect } from 'react';
 import authModel from './models/auth';
 import FlashMessage from 'react-native-flash-message';
 import { DefaultTheme, Provider as PaperProvider, Appbar } from 'react-native-paper';
-import TrainViewHeader from './components/TrainViewHeader';
+import StationFlatList from './components/station/stationFlatList';
 
 
 const Tab = createBottomTabNavigator();
+
 
 const routeIcons = {
   "Tåg": "time",
@@ -44,16 +45,17 @@ function appBarHeader() {
   );
 }
 
+
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-
   useEffect(() => {
     (async () => {
       setIsLoggedIn(await authModel.loggedIn())
     })();   
   }, []);
 
-  return (
+   return (
     <PaperProvider theme={theme}>
       <SafeAreaView style={styles.container}>
         <NavigationContainer>
@@ -66,42 +68,42 @@ export default function App() {
             tabBarActiveTintColor: "#217cff",
           })}
           >
-            <Tab.Screen name="Tåg" component={Home} 
-                options={ 
-                    {
-                        /* header: () => <TrainViewHeader />, */
-                        headerStyle: {},
-                        headerTitle: "Tågförseningar", 
-                        headerShown: true,
-                        //headerTitleAlign: "left",
-                        //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
-                        
-                        headerRight: () => 
-                        <View style={{flexDirection: 'row'}} >
-                            <View>
-                                <Ionicons name="navigate-outline" color={"#217cff"} size={25}/>
-                            </View>
+            <Tab.Screen name="Tåg" component={Train}
+                 
+                 options={ 
+                  {
+                      /* header: () => <TrainViewHeader />, */
+                      //headerStyle: {},
+                      //headerTitle: "Tågförseningar", 
+                      headerShown: false,
+                      //headerTitleAlign: "left",
+                      //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                      
+                      /* headerRight: () => 
+                      <View style={{flexDirection: 'row'}} >
+                          <View>
+                              <Ionicons name="navigate-outline" color={"#217cff"} size={25}/>
+                          </View>
 
-                            <View style={{marginLeft: 20}}>
-                                <Ionicons  name="list-outline" color={"#217cff"} size={25}/>
-                            </View>
-                        </View>
-                        ,
-                        headerRightContainerStyle: {margin: 1, paddingRight: 15, paddingBottom: 15},
+                          <View style={{marginLeft: 20}}>
+                              <Ionicons  name="list-outline" color={"#217cff"} size={25} onPress={() => setModalVisible(true)}/>
+                          </View>
+                      </View>
+                      , */
+                      //headerRightContainerStyle: {margin: 1, paddingRight: 15, paddingBottom: 15},
 
-                        headerLeft: () => 
-                        <View style={{flexDirection: 'row'}} >
-                            <View>
-                                <Ionicons name="heart-outline" color={"#217cff"} size={25}/>
-                            </View>
-                        </View>
-                        ,
-                        headerLeftContainerStyle: {margin: 1, paddingLeft: 15, paddingBottom: 15},
-                        
-                        
-                    }                    
-                }
-                
+                      /* headerLeft: () => 
+                      <View style={{flexDirection: 'row'}} >
+                          <View>
+                              <Ionicons name="heart-outline" color={"#217cff"} size={25}/>
+                          </View>
+                      </View>
+                      ,
+                       *///headerLeftContainerStyle: {margin: 1, paddingLeft: 15, paddingBottom: 15},
+                      
+                      
+                  }                    
+              }
             />
             
             <Tab.Screen name="Karta" component={TrainMap}

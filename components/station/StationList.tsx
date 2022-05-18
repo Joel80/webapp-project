@@ -28,7 +28,7 @@ export default function StationList({setIsLoggedIn, navigation}) {
             key={index}
             title={ station.AdvertisedLocationName }
             onPress= { () => {
-                navigation.navigate('Details', {
+                navigation.navigate('StationDetails', {
                     station: station
                 });
             }}

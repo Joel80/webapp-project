@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StationList from './StationList';
 import StationDetails from './StationDetails';
 import StationForm from './StationForm';
+import StationFlatList from './stationFlatList';
 
 const Stack = createNativeStackNavigator();
 

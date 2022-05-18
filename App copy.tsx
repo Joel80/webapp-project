@@ -45,7 +45,7 @@ function appBarHeader() {
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
-
+  
   useEffect(() => {
     (async () => {
       setIsLoggedIn(await authModel.loggedIn())

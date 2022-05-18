@@ -4,6 +4,7 @@ import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
+import { TrainTable } from '../../styles/index';
 
 function zeroPad(number: number): string {
     if (number < 10) {
@@ -37,20 +38,20 @@ function TrainList() {
         return (
             
         <View key={index}>
-            <DataTable.Row style={{height: 50, marginTop: 0, marginBottom: 0, borderBottomWidth: 0, paddingBottom: 0}}>
-                <DataTable.Cell style={{flex: 0}} textStyle={{fontWeight: 'bold', fontSize: 17}}>
+            <DataTable.Row style={TrainTable.trainTableRow}>
+                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
                     {train.AdvertisedTrainIdent}  {train.FromLocationName}
                 </DataTable.Cell>
-                <DataTable.Cell style={{flex: 1}} textStyle={{fontWeight: 'bold', fontSize: 17}}>
+                <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
                 </DataTable.Cell>
-                <DataTable.Cell style={{flex: 0}} textStyle={{color: "#959595", textDecorationLine: 'line-through', fontWeight: 'bold', fontSize: 17,  padding:10}} numeric>
+                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
                    {advertisedTime}
-                </DataTable.Cell >
-                <DataTable.Cell style={{flex: 0}} textStyle={{color: 'red', fontWeight: 'bold', fontSize: 17}} numeric>
+                </DataTable.Cell>
+                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
                      {estimatedTime}
                 </DataTable.Cell>
             </DataTable.Row >
-            <DataTable.Row style={{borderBottomWidth: 1, borderBottomColor: "#ececed", minHeight:0, paddingBottom: 10, paddingTop: 0, marginTop: 0}}>
+            <DataTable.Row style={TrainTable.trainTableIconRow}>
                 <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
             </DataTable.Row>
         </View> )

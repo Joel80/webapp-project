@@ -54,7 +54,7 @@ export default function Train() {
             />
             <Stack.Screen name="TrainsAtStation" component={TrainsAtStation}
                     
-                    //options={ {headerShown: false}}
+                    options={ ({route}) =>({ title: route.params.station.AdvertisedLocationName  })}
             />
         </Stack.Navigator>  
     );

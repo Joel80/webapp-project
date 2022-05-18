@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Train from './components/train/Train';
 import TrainMap from './components/TrainMap';
@@ -12,7 +12,6 @@ import { useState, useEffect } from 'react';
 import authModel from './models/auth';
 import FlashMessage from 'react-native-flash-message';
 import { DefaultTheme, Provider as PaperProvider, Appbar } from 'react-native-paper';
-import StationFlatList from './components/station/stationFlatList';
 
 
 const Tab = createBottomTabNavigator();

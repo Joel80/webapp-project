@@ -22,7 +22,7 @@ export default function StationFlatList({navigation}) {
 
     const Item = ( {item, onPress }) => (
         <TouchableOpacity onPress={onPress}>
-            <View style={{ padding: 5, borderBottomWidth: 1, borderBottomColor: "#ececed" }}><Text style={{fontSize: 18}}>{item.AdvertisedLocationName}</Text></View>
+            <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: "#ececed" }}><Text style={{fontSize: 18, fontWeight: "500"}}>{item.AdvertisedLocationName}</Text></View>
         </TouchableOpacity>
     )
 

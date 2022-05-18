@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, ScrollView, StyleSheet, View, Pressable, Button } from 'react-native';
+import { Text, ScrollView, Pressable, Button } from 'react-native';
 import station from '../../interfaces/station';
 import stationModel from '../../models/stations';
 import authModel from '../../models/auth';

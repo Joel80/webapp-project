@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, Text, View } from 'react-native';
-import Trains from './Trains';
+import Trains from './TrainList';
 import { Appbar } from 'react-native-paper';
 
 export default function Home() {

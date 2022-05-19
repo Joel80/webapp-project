@@ -3,6 +3,7 @@ import StationList from './StationList';
 import StationDetails from './StationDetails';
 import StationForm from './StationForm';
 import StationModal from './StationModal';
+import StationFavoriteModal from './StationFavoriteModal';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,10 @@ export default function Station(props) {
                 {(screenProps) => <StationForm  {...screenProps}/>}
             </Stack.Screen>
             <Stack.Screen name="StationModal" component={StationModal}
+                    
+                    options={ {headerShown: false, presentation: 'modal'}}
+            />
+            <Stack.Screen name="StationFavoriteModal" component={StationFavoriteModal}
                     
                     options={ {headerShown: false, presentation: 'modal'}}
             />

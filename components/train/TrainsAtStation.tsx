@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
@@ -14,11 +14,11 @@ function zeroPad(number: number): string {
     return "" + number;
 }
 
-export default function StationDetails({route}) {
+function TrainsAtStationList({route}) {
     //console.log(route);
     const { station } = route.params;
 
-    console.log(station);
+    //console.log(station);
 
     const [delayedTrainsAtStation, setDelayedTrainsAtStation] = useState<delayedTrain[]>([]);
 
@@ -40,24 +40,25 @@ export default function StationDetails({route}) {
 
         return (
             
-        <View key={index}>
-            <DataTable.Row style={TrainTable.trainTableRow}>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
-                    {train.AdvertisedTrainIdent}  {train.FromLocationName}
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
-                   {advertisedTime}
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
-                     {estimatedTime}
-                </DataTable.Cell>
-            </DataTable.Row >
-            <DataTable.Row style={TrainTable.trainTableIconRow}>
-                <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
-            </DataTable.Row>
-        </View> )
+            <ScrollView key={index}>
+                <DataTable.Row style={TrainTable.trainTableRow}>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
+                        {train.AdvertisedTrainIdent}  {train.FromLocationName}
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
+                        {advertisedTime}
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
+                        {estimatedTime}
+                    </DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row style={TrainTable.trainTableIconRow}>
+                    <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
+                </DataTable.Row>
+            </ScrollView> 
+        )
     
     });
 
@@ -69,6 +70,14 @@ export default function StationDetails({route}) {
         </View>
 
     );
+}
+
+export default function TrainsAtStation({route}) {
+    return (
+        <ScrollView>
+            <TrainsAtStationList route={route}/>
+        </ScrollView>
+    )
 }
 
         

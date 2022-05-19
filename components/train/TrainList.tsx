@@ -37,24 +37,25 @@ function TrainList() {
 
         return (
             
-        <View key={index}>
-            <DataTable.Row style={TrainTable.trainTableRow}>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
-                    {train.AdvertisedTrainIdent}  {train.FromLocationName}
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
-                   {advertisedTime}
-                </DataTable.Cell>
-                <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
-                     {estimatedTime}
-                </DataTable.Cell>
-            </DataTable.Row >
-            <DataTable.Row style={TrainTable.trainTableIconRow}>
-                <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
-            </DataTable.Row>
-        </View> )
+            <View key={index}>
+                <DataTable.Row style={TrainTable.trainTableRow}>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
+                        {train.AdvertisedTrainIdent}  {train.FromLocationName}
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
+                        {advertisedTime}
+                    </DataTable.Cell>
+                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
+                        {estimatedTime}
+                    </DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row style={TrainTable.trainTableIconRow}>
+                    <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
+                </DataTable.Row>
+            </View> 
+        )
     
     });
 

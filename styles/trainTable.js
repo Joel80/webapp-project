@@ -3,7 +3,8 @@ export const trainTableRow = {
     marginTop: 0,
     marginBottom: 0,
     borderBottomWidth: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    backgroundColor: "fff"
 };
 
 export const trainTableIconRow = {

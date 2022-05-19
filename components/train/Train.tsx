@@ -47,7 +47,7 @@ export default function Train() {
 
                 })}
             
-          />         
+            />         
             <Stack.Screen name="StationModal" component={StationModal}
                     
                     options={ {headerShown: false, presentation: 'modal'}}

@@ -4,15 +4,35 @@ import StationDetails from './StationDetails';
 import StationForm from './StationForm';
 import StationModal from './StationModal';
 import StationFavoriteModal from './StationFavoriteModal';
+import { Button, View } from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function Station(props) {
     return (
-        <Stack.Navigator initialRouteName="List">
-            <Stack.Screen name="List">
+        <Stack.Navigator initialRouteName="List" >
+            <Stack.Screen name="List"  
+                options={ ({navigation}) =>({
+
+                    headerTitle: "Favoritstationer", 
+                    headerShown: true,
+                    //headerTitleAlign: "left",
+                    //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                    
+                    headerRight: () =>
+                    <View> 
+                        
+                        <Button title="Ändra" onPress={(screenProps) => navigation.navigate('Form', { navigation: {navigation} })}/>
+
+                    </View>
+                    
+
+
+                })}
+            >
                 {(screenProps) => <StationList {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
+                
             </Stack.Screen>
             <Stack.Screen name="StationDetails"
                 options={ ({route}) =>({ title: route.params.station.AdvertisedLocationName  })}

@@ -3,7 +3,13 @@ import { Text, ScrollView, View, Pressable, Button, TouchableOpacity, FlatList }
 import station from '../../interfaces/station';
 import stationModel from '../../models/stations';
 import authModel from '../../models/auth';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FavoriteStationList } from '../../styles';
+import { Ionicons } from '@expo/vector-icons';
 
+// Blue #48b7e9 to #0675a2
+
+// Green #25af4e to #00963d
 
 
 export default function StationList({setIsLoggedIn, navigation, route}) {
@@ -37,15 +43,46 @@ export default function StationList({setIsLoggedIn, navigation, route}) {
     const Item = ( {item, onPress, index }) => (
         <TouchableOpacity onPress={onPress}>
             
-            {index % 2 === 0 && 
-                <Text style={{backgroundColor: "blue"}}>
-                    {item.AdvertisedLocationName}
-                </Text>
+            {index % 2 === 0 &&
+                <LinearGradient colors = {["#48b7e9", "#0675a2"]}>
+                    <View style={FavoriteStationList.item}>
+                        <View style={FavoriteStationList.nameView}>
+                            <Ionicons name="train" color={"#fff"} size={22}/>
+                            <Text style={FavoriteStationList.text}>
+                                {item.AdvertisedLocationName}
+                            </Text>
+                            <Text style={FavoriteStationList.textRight}>
+                                Antal spår: {item.PlatformLine?.length}
+                            </Text>
+                        </View>
+                        <View style={FavoriteStationList.smallTextView}>
+                            <Text style={FavoriteStationList.smallText}>
+                                Tågstation
+                            </Text>
+                        </View>
+                    </View>
+                    
+                </LinearGradient>
             }
             {index % 2 !== 0 && 
-                <Text style={{backgroundColor: "red"}}>
-                    {item.AdvertisedLocationName}
-                </Text>
+                <LinearGradient colors = {["#25af4e",  "#00963d"]}>
+                    <View style={FavoriteStationList.item}>
+                        <View style={FavoriteStationList.nameView}>
+                            <Ionicons name="train" color={"#fff"} size={22}/>
+                            <Text style={FavoriteStationList.text}>
+                                {item.AdvertisedLocationName}
+                            </Text>
+                            <Text style={FavoriteStationList.textRight}>
+                                Antal spår: {item.PlatformLine.length}
+                            </Text>
+                        </View>
+                        <View style={FavoriteStationList.smallTextView}>
+                            <Text style={FavoriteStationList.smallText}>
+                                Tågstation
+                            </Text>
+                        </View>
+                    </View>
+                </LinearGradient>
             }
             
                 
@@ -75,6 +112,14 @@ export default function StationList({setIsLoggedIn, navigation, route}) {
             
                 data={favoriteStations}
                 renderItem={renderItem}
+            />
+
+            <Button
+                title={ 'Lägg till ny station' }
+                onPress= { () => {
+                    navigation.navigate('Form', {
+                    });
+                }}
             />
 
             <Button 

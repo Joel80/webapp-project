@@ -59,8 +59,8 @@ const trains = {
         const stationArray = [];
 
         for (const obj of  result.data) {
-            const stationData = JSON.parse(obj.artefact);
-
+            let stationData = JSON.parse(obj.artefact);
+            stationData.id = obj.id;
             //console.log(stationData);
 
             stationArray.push(stationData);
@@ -92,8 +92,8 @@ const trains = {
         };
 
        
-       //const data = JSON.stringify(station);
-        console.log(JSON.stringify(data));
+        //const data = JSON.stringify(station);
+        //console.log(JSON.stringify(data));
 
         try {
             const response = await fetch(`${authConfig.base_url}/data`, {
@@ -113,6 +113,33 @@ const trains = {
             console.log(error);
         }
 
+    },
+    deleteFavoriteStationData: async function deleteFavoriteStationData(id: number) {
+        console.log("Deleting user data");
+        
+        const tokenAndData = await storage.readToken();
+        const token = tokenAndData.token;
+        const api_key = authConfig.api_key
+        const data = {
+            id: id,
+            api_key: api_key
+        }
+
+        try {
+            const response = await fetch(`${authConfig.base_url}/data`, {
+                body: JSON.stringify(data),
+                headers: {
+                    'x-access-token': token,
+                    'content-type': 'application/json'
+                },
+                method: 'DELETE'
+            });
+
+
+        } catch (error) {
+            console.log("Could not delete station data");
+            console.log(error);
+        }
     }
 };
 

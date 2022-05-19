@@ -2,6 +2,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StationList from './StationList';
 import StationDetails from './StationDetails';
 import StationForm from './StationForm';
+import StationModal from './StationModal';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,10 @@ export default function Station(props) {
             <Stack.Screen name="Form" >
                 {(screenProps) => <StationForm  {...screenProps}/>}
             </Stack.Screen>
+            <Stack.Screen name="StationModal" component={StationModal}
+                    
+                    options={ {headerShown: false, presentation: 'modal'}}
+            />
         </Stack.Navigator>  
     );
 }

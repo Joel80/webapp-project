@@ -8,16 +8,20 @@ import station from '../../interfaces/station';
 export default function StationModal({navigation}) {
     
     const [stations, setStations] = useState<station[]>([]);
-
+    const [favoriteStations, setFavoriteStations] = useState<station[]>([]);
     useEffect( () => {
         (async () => {
             
             setStations(await stationModel.getStations());
-    
+            setFavoriteStations(await stationModel.getFavoriteStationsData());
         })();
     }, []);
 
-    const stationList = stations.sort((a, b) => (a.AdvertisedLocationName > b.AdvertisedLocationName) ? 1 : -1)
+    const stationList = stations
+    .filter(station => favoriteStations.every(favoriteStation => 
+        favoriteStation.LocationSignature !== station.LocationSignature))
+    .sort((a, b) => (a.AdvertisedLocationName > b.AdvertisedLocationName) ? 1 : -1);
+
 
 
     const Item = ( {item, onPress }) => (
@@ -31,9 +35,10 @@ export default function StationModal({navigation}) {
             <Item
                 item={item}
                 onPress= { () => {
+                    stationModel.createFavoriteStationsData(item);
                     navigation.goBack();
-                    navigation.navigate('TrainsAtStation', {
-                        station: item
+                    navigation.navigate('List', {
+                        reload: true
                     });
                 }}
             />

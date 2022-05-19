@@ -39,7 +39,7 @@ export default function Station(props) {
             >
                 {(screenProps) => <StationDetails  {...screenProps}/>}
             </Stack.Screen>
-            <Stack.Screen name="Form" >
+            <Stack.Screen name="Form" options={ {headerShown: false, presentation: 'modal'}}>
                 {(screenProps) => <StationForm  {...screenProps}/>}
             </Stack.Screen>
             <Stack.Screen name="StationModal" component={StationModal}

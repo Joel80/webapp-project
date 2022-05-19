@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { useEffect, useState } from 'react';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
@@ -13,7 +13,7 @@ function zeroPad(number: number): string {
 
     return "" + number;
 }
-export default function StationDetails({route}) {
+function StationDetailsList({route}) {
     //console.log(route);
     const { station } = route.params;
 
@@ -39,7 +39,7 @@ export default function StationDetails({route}) {
 
      return (
          
-     <View key={index}>
+     <ScrollView key={index}>
          <DataTable.Row style={TrainTable.trainTableRow}>
              <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
                  {train.AdvertisedTrainIdent}  {train.FromLocationName}
@@ -56,16 +56,25 @@ export default function StationDetails({route}) {
          <DataTable.Row style={TrainTable.trainTableIconRow}>
              <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
          </DataTable.Row>
-     </View> )
+     </ScrollView> )
  
  });
 
  //console.log(trains);
 
- return (
-     <View>
-         {trains}
-     </View>
+    return (
+        <View>
+            {trains}
+        </View>
 
- );
+    );
+ 
+}
+
+export default function TrainsAtStation({route}) {
+    return (
+        <ScrollView>
+            <StationDetailsList route={route}/>
+        </ScrollView>
+    )
 }

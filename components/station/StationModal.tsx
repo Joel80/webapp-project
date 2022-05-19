@@ -35,11 +35,14 @@ export default function StationModal({navigation}) {
             <Item
                 item={item}
                 onPress= { () => {
-                    stationModel.createFavoriteStationsData(item);
-                    navigation.goBack();
-                    navigation.navigate('List', {
-                        reload: true
-                    });
+                    (async () => {
+                        await stationModel.createFavoriteStationsData(item);
+                        navigation.goBack();
+                        navigation.navigate('List', {
+                            reload: true
+                        });
+                    
+                    })();
                 }}
             />
         )

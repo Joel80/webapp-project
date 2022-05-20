@@ -96,6 +96,7 @@ export default function StationList({setIsLoggedIn, navigation, route}) {
                 item={item}
                 index={index}
                 onPress= { () => {
+                    const station = favoriteStations.find((station) => station.AdvertisedLocationName === item  )
                     navigation.navigate('StationDetails', {
                         station: item
                     });
@@ -113,57 +114,6 @@ export default function StationList({setIsLoggedIn, navigation, route}) {
                 data={favoriteStations}
                 renderItem={renderItem}
             />
-
-            <Button
-                title={ 'Lägg till ny station' }
-                onPress= { () => {
-                    navigation.navigate('Form', {
-                    });
-                }}
-            />
-
-            <Button 
-                title="Logga ut"
-                onPress= { () => {
-                    authModel.logout();
-                    setIsLoggedIn(false);
-                }}
-            />
-        </View>
-            
+        </View> 
 )
-    /* const favorites = favoriteStations.map((station, index) =>               
-        <Button
-            key={index}
-            title={ station.AdvertisedLocationName }
-            onPress= { () => {
-                navigation.navigate('StationDetails', {
-                    station: station
-                });
-            }}
-        />
-    );
-
-
-     return (
-        <ScrollView>
-            {favorites}
-            <Button
-            title={ 'Lägg till ny station' }
-            onPress= { () => {
-                navigation.navigate('Form', {
-                });
-            }}
-        />
-            <Pressable style={() => [{}]}
-                onPress= { () => {
-                    authModel.logout();
-                    setIsLoggedIn(false);
-                }}>
-                <Text>Logga ut</Text>
-            </Pressable>
-        </ScrollView>
-        
-        
-    );  */  
 }

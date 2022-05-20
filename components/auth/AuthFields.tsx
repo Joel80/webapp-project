@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ScrollView, Text, TextInput, Pressable } from "react-native";
+import { ScrollView, Text, TextInput, Pressable, Button } from "react-native";
 import { showMessage } from "react-native-flash-message";
+import { Forms } from "../../styles";
 //import { Typography, Forms, Base, ButtonStyle} from '../../styles';
 
 export default function AuthFields ({auth, setAuth, title, submit, navigation }) {
@@ -45,10 +46,11 @@ export default function AuthFields ({auth, setAuth, title, submit, navigation })
     }
 
     return (
-    <ScrollView>
-        <Text>{title}</Text>
-        <Text>E-post</Text>
-        <TextInput            
+    <ScrollView style={Forms.base}>
+        {/* <Text>{title}</Text> */}
+        <Text style={Forms.label}>E-post</Text>
+        <TextInput
+            style={Forms.input}
             onChangeText={(content: string) =>  {
                 validateEmail(content);
                 setAuth({...auth, email: content})
@@ -59,9 +61,10 @@ export default function AuthFields ({auth, setAuth, title, submit, navigation })
             keyboardType="email-address"
             testID="email-field"
         />
-        <Text>Lösenord</Text>
+        <Text style={Forms.label}>Lösenord</Text>
 
         <TextInput
+            style={Forms.input}
             onChangeText={(content: string) =>  {
                 validatePassword(content);
                 setAuth({...auth, password: content})
@@ -72,7 +75,8 @@ export default function AuthFields ({auth, setAuth, title, submit, navigation })
             autoCorrect={false}
             testID="password-field"
         />
-        <Pressable style={() => [{}]}
+        <Button
+            title= "Logga in"
             onPress= { () => {
                 if(validPassword && validEmail) {
                     submit();
@@ -84,24 +88,20 @@ export default function AuthFields ({auth, setAuth, title, submit, navigation })
                 }
             }}
             accessibilityLabel={`${title} genom att trycka`}
-        >
-            <Text>{title}</Text>
-        </Pressable>
-
+        />
 
         {title === "Logga in" &&
             
-            <Pressable
-                style={() => [{}]}
+            <Button
+                title="Registrera istället"
                 onPress= { () => {
                     navigation.navigate("Register");
-                }}>
-                <Text>Registrera istället</Text>
-            </Pressable>
+                }}
+            />
         }
 
         {title === "Logga in" &&
-            <Text>Genom att registrera dig får du möjlighet att logga in för att se och skapa fakturor.</Text>
+            <Text>Genom att registrera dig får du möjlighet att spara favoritstationer.</Text>
         
         }
     </ScrollView>

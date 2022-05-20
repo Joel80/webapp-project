@@ -51,7 +51,22 @@ export default function Station(props) {
             >
                 {(screenProps) => <StationDetails  {...screenProps}/>}
             </Stack.Screen>
-            <Stack.Screen name="Form" options={ {headerShown: false, presentation: 'modal'}}>
+            <Stack.Screen name="Form" 
+                options={ ({navigation}) =>({
+                    presentation: "modal"
+,                    headerTitle: "Favoritstationer", 
+                    headerShown: true,
+                    //headerTitleAlign: "left",
+                    //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                    
+                    headerLeft: () =>
+                    <View> 
+                        
+                        <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
+
+                    </View>
+                })}
+            >
                 {(screenProps) => <StationForm  {...screenProps}/>}
             </Stack.Screen>
             <Stack.Screen name="StationModal" component={StationModal}

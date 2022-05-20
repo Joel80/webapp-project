@@ -74,7 +74,7 @@ function TrainsAtStationList({route}) {
 
 export default function TrainsAtStation({route}) {
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor: "#fff"}}>
             <TrainsAtStationList route={route}/>
         </ScrollView>
     )

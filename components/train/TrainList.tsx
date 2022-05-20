@@ -72,7 +72,7 @@ function TrainList() {
 
 export default function Trains() {
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor: "#ffff"}}>
             <TrainList />
         </ScrollView>
     )

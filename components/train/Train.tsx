@@ -1,4 +1,4 @@
-import { Text, View, Modal, Pressable } from 'react-native';
+import { Text, View, Modal, Pressable, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TrainList from './TrainList';
 import TrainsAtStation from './TrainsAtStation';
@@ -50,11 +50,33 @@ export default function Train() {
             />         
             <Stack.Screen name="StationModal" component={StationModal}
                     
-                    options={ {headerShown: false, presentation: 'modal'}}
+                    options={ ({navigation}) =>({
+                        presentation: "modal",
+                        headerTitle: "Favoritstationer", 
+                        headerShown: true,
+                        //headerTitleAlign: "left",
+                        //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                        
+                        headerLeft: () =>
+                        <View> 
+                            
+                            <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
+    
+                        </View>
+                    })}
             />
             <Stack.Screen name="TrainsAtStation" component={TrainsAtStation}
                     
-                    options={ ({route}) =>({ title: route?.params?.station.AdvertisedLocationName  })}
+                    options={ ({route, navigation}) =>({ 
+                        title: route?.params?.station.AdvertisedLocationName,
+                        headerLeft: () =>
+                        <View> 
+                            
+                            <Button title="Tillbaka" onPress={(screenProps) => navigation.navigate('List')}/>
+    
+                        </View>
+                    
+                    })}
             />
         </Stack.Navigator>  
     );

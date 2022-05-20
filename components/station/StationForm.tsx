@@ -6,10 +6,10 @@ import { View, Button, Pressable, Text } from 'react-native';
 export default function StationForm({navigation}) {
     
     return (
-        <View>
-            <Button title= "Avbryt" onPress={() => navigation.goBack()} />
-            <View style={{flexDirection: "row"}}>
-            <View style={{ marginLeft: 15, padding:2}}>
+        
+        
+        <View style={{flex: 1, alignItems: "center", marginTop: 15}}>
+            <View style={{flexDirection: "row", marginTop: 10}}>
                 <Pressable
                     
                     onPress= { () => {
@@ -27,16 +27,17 @@ export default function StationForm({navigation}) {
                             borderRadius: 7,
                             borderColor: "#cacacc",
                             borderWidth: 1,
-                            padding: 15
+                            padding: 25,
+                            marginRight: 35
+                            
                         }
                     ]}
                 >
                     
-                        <Text>Lägg till</Text>
-                        <Text>Välj...</Text>
+                        <Text style={{fontWeight: "100", paddingRight: 15}}>Lägg till</Text>
+                        <Text style={{fontWeight: '400', fontSize: 18}}>Välj...</Text>
                     
                 </Pressable>
-                </View>
                 <Pressable
                     onPress= { () => {
                         navigation.navigate('StationFavoriteModal', {
@@ -51,12 +52,13 @@ export default function StationForm({navigation}) {
                             borderRadius: 7,
                             borderColor: "#cacacc",
                             borderWidth: 1,
-                            padding: 15
+                            padding: 25,
+                            marginLeft: 50
                         }
                     ]}
                 >
-                    <Text>Ta bort</Text>
-                    <Text>Välj...</Text>
+                    <Text style={{fontWeight: "100", paddingRight: 15}}>Ta bort</Text>
+                    <Text style={{fontWeight: '400', fontSize: 18}}>Välj...</Text>
                 </Pressable>
             </View>
         </View>

@@ -5,6 +5,7 @@ import StationForm from './StationForm';
 import StationModal from './StationModal';
 import StationFavoriteModal from './StationFavoriteModal';
 import { Button, View } from 'react-native';
+import authModel from '../../models/auth';
 
 
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,17 @@ export default function Station(props) {
                     <View> 
                         
                         <Button title="Ändra" onPress={(screenProps) => navigation.navigate('Form', { navigation: {navigation} })}/>
+
+                    </View>,
+
+                    headerLeft: () =>
+                    <View> 
+                        
+                        <Button title="Logga ut" onPress={ () => {
+                                authModel.logout();
+                                props.setIsLoggedIn(false);
+                            }}
+                        />
 
                     </View>
                     

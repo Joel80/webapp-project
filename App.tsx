@@ -74,7 +74,7 @@ export default function App() {
                         <Tab.Screen name="Stationer" options={{headerShown: false}}>
                             { () => <Station setIsLoggedIn={setIsLoggedIn}/>}
                         </Tab.Screen> :
-                        <Tab.Screen name="Logga in">
+                        <Tab.Screen name="Logga in" options={{headerShown: false}}>
                             { () => <Auth setIsLoggedIn={setIsLoggedIn}/>}
                         </Tab.Screen>
                     }

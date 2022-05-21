@@ -1,5 +1,5 @@
 /**
- * I komponenten <StationDetails> bör en tabell med tåginformation ritas ut.
+ * I komponenten <StationDetails> bör en tabell med tåginformation över tåg från en viss station ritas ut.
  */
  import { render } from '@testing-library/react-native';
  import StationDetails from '../components/station/StationDetails';

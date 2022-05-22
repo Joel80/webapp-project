@@ -31,7 +31,7 @@ const resp = [
 deliveryModel.addDelivery = jest.fn().mockName('addDelivery');
   */
  
- test('Table of trains are rendered', async () => {
+ test('Table of favorite stations are rendered, pressing a station calls stationModel.deleteFavoriteStationData ', async () => {
     
     const {findByText} =  render(<StationFavoriteModal navigation={navigation} />);
     

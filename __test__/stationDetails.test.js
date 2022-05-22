@@ -28,6 +28,15 @@ const resp = [
         AdvertisedTrainIdent: "735",
         Canceled: false,
         EstimatedTimeAtLocation: "2021-03-11T13:15:00.000+01:00",
+    },
+
+    {
+        FromLocationName: "Astrid Lindgrens värld",
+        ToLocationName: "Astrid Lindgrens värld",
+        AdvertisedTimeAtLocation: "2021-03-11T13:03:00.000+01:00",
+        AdvertisedTrainIdent: "800",
+        Canceled: false,
+        EstimatedTimeAtLocation: "2021-03-11T13:15:00.000+01:00",
     }
 ]
 
@@ -37,22 +46,23 @@ const resp = [
  delayedTrainModel.getDelayedTrains.mockReturnValue(resp);
  
  
- test('Table of trains are rendered', async () => {
+ test('Table of trains from the param station are rendered', async () => {
      
-     const {findAllByText, getByText, queryByText} =  render(<StationDetails route={route} />);
-     
-     // Wait for the text Stockholm Central to be displayed  
-     const station = await findAllByText('Stockholm Central', { exact: false });
- 
-     expect(station).toBeDefined();
-     
-     // Use getBy here to avoid warning you get with several findBy:s
-     const advertisedTime = await getByText('13:03', { exact: false });
- 
-     expect(advertisedTime).toBeDefined();
- 
-     const estimatedTime = await getByText('13:15', { exact: false });
- 
-     expect(estimatedTime).toBeDefined();
- 
- });
+    const {findAllByText, getByText, queryByText} =  render(<StationDetails route={route} />);
+    
+    // Wait for the text Stockholm Central to be displayed  
+    const station = await findAllByText('Stockholm Central', { exact: false });
+
+    expect(station).toBeDefined();
+    
+    // Use getBy here to avoid warning you get with several findBy:s
+    const advertisedTime = await getByText('13:03', { exact: false });
+
+    expect(advertisedTime).toBeDefined();
+
+    const estimatedTime = await getByText('13:15', { exact: false });
+
+    expect(estimatedTime).toBeDefined();
+
+    expect(await queryByText('Astrid Lindgrens värld')).toBeNull(); 
+});

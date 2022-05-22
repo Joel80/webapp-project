@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
@@ -61,7 +61,8 @@ function TrainList() {
 
      return (
   
-           <View>            
+           <View>
+               <Text style={{fontSize: 30, fontWeight: "bold", borderBottomColor: "#000", borderBottomWidth: 5, padding: 5}}>Tågförseningar</Text>            
                {list}
             </View>
 

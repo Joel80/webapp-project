@@ -48,7 +48,7 @@ export default function TrainMap() {
     const markers = trains.map((train, index) => 
         <Marker
         key={index}
-        coordinate={{ latitude: train.FromLat,  longitude: train.FromLong += index/1000000 }}
+        coordinate={{ latitude: train.FromLat,  longitude: train.FromLong  }}
         title={train.FromLocationName}
         identifier={train.FromLocationName}
         description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
@@ -62,7 +62,7 @@ export default function TrainMap() {
             console.log(reach);
             const walkingCircle = 
             <Circle 
-                center={{latitude: train.FromLat, longitude: train.FromLong += index/1000000 }}
+                center={{latitude: train.FromLat, longitude: train.FromLong  }}
                 radius={reach}
                 fillColor={'rgba(255,0,0, 0.2)'}
                 strokeColor={'rgba(255,0,0, 0.5)'}

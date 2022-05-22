@@ -22,6 +22,8 @@ const trains = {
 
         const markedTrains: string[] = [];
 
+        const fromCoords: Array<Array<number>> = []
+
         for (const train of trains) {
             
             // Skip trains that are already accounted for (a train can appear several times
@@ -63,10 +65,14 @@ const trains = {
                         //console.log(station.LocationSignature, train.AdvertisedTrainIdent);
                         trainFromLocationName = station.AdvertisedLocationName;
                         trainFromCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
+                  
 
                         if (trainFromCoords && parseFloat(trainFromCoords[0]) !== NaN && parseFloat(trainFromCoords[1]) !== NaN) {
+                 
                             trainFromLong = parseFloat(trainFromCoords[0]);
                             trainFromLat = parseFloat(trainFromCoords[1]);
+
+                            
                             
                         } else {
                             trainFromLat = -0.0;
@@ -116,6 +122,17 @@ const trains = {
             };
             // Only push delayed trains with a from latitude to array
             if (delayedTrain.FromLat !== -0.0) {
+
+                // Check if there are overlapping coords, if so slightly change them
+                // so that two trains dont overlap in map
+                for (const train of delayedTrainsArray) {
+                    if (delayedTrain.FromLat === train.FromLat && delayedTrain.FromLong === train.FromLong) {
+                        delayedTrain.FromLat += 2/111111
+                    }
+                }
+
+                console.log(`${delayedTrain.FromLocation}: long: ${delayedTrain.FromLong} lat: ${delayedTrain.FromLat} `)
+
                 delayedTrainsArray.push(delayedTrain);
             }
            

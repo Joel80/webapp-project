@@ -8,8 +8,8 @@ export default function StationForm({navigation}) {
     return (
         
         
-        <View style={{flex: 1, alignItems: "center", marginTop: 15}}>
-            <View style={{flexDirection: "row", marginTop: 10}}>
+        <View style={{flex: 1, alignItems: "center", marginTop: 40}}>
+            <View style={{flexDirection: "row"}}>
                 <Pressable
                     
                     onPress= { () => {
@@ -24,19 +24,19 @@ export default function StationForm({navigation}) {
                           backgroundColor: pressed
                             ? 'grey'
                             : 'white',
-                            borderRadius: 7,
+                            borderRadius: 15,
                             borderColor: "#cacacc",
                             borderWidth: 1,
-                            padding: 25,
-                            marginRight: 35
+                            marginRight: 30
                             
                         }
                     ]}
                 >
                     
-                        <Text style={{fontWeight: "100", paddingRight: 15}}>Lägg till</Text>
-                        <Text style={{fontWeight: '400', fontSize: 18}}>Välj...</Text>
-                    
+                    <View style={{paddingRight: 35, paddingLeft: 35, paddingTop: 12, paddingBottom: 12}}>
+                        <Text style={{fontWeight: "100"}}>Lägg till</Text>
+                        <Text style={{fontWeight: '400', fontSize: 20}}>Välj...</Text>
+                    </View>
                 </Pressable>
                 <Pressable
                     onPress= { () => {
@@ -49,16 +49,17 @@ export default function StationForm({navigation}) {
                           backgroundColor: pressed
                             ? 'grey'
                             : 'white',
-                            borderRadius: 7,
+                            borderRadius: 15,
                             borderColor: "#cacacc",
                             borderWidth: 1,
-                            padding: 25,
-                            marginLeft: 50
+                            marginLeft: 30
                         }
                     ]}
                 >
-                    <Text style={{fontWeight: "100", paddingRight: 15}}>Ta bort</Text>
-                    <Text style={{fontWeight: '400', fontSize: 18}}>Välj...</Text>
+                    <View style={{paddingRight: 35, paddingLeft: 35, paddingTop: 12, paddingBottom: 12}}>
+                        <Text style={{fontWeight: "100"}}>Ta bort</Text>
+                        <Text style={{fontWeight: '400', fontSize: 20}}>Välj...</Text>
+                    </View>
                 </Pressable>
             </View>
         </View>

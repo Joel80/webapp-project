@@ -6,7 +6,7 @@ export const input = {
     borderColor: "#ccc",
     borderRadius: 8,
     backgroundColor: "#ececed",
-    color: '#357960',
+    color: "#000" //'#357960',
 };
 
 export const label = {

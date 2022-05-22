@@ -51,9 +51,7 @@ export default function StationFavoriteModal({navigation}) {
     
     return (
         <View>
-            <View  style={{ paddingLeft: 250 }}>
-                <Button title= "Avbryt" onPress={() => navigation.goBack()} />
-            </View>
+
             <FlatList 
             
                 data={stationList}

@@ -54,7 +54,7 @@ export default function Station(props) {
             <Stack.Screen name="Form" 
                 options={ ({navigation}) =>({
                     presentation: "modal"
-,                    headerTitle: "Favoritstationer", 
+,                    headerTitle: "Ändra favoritstationer", 
                     headerShown: true,
                     //headerTitleAlign: "left",
                     //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
@@ -71,11 +71,36 @@ export default function Station(props) {
             </Stack.Screen>
             <Stack.Screen name="StationModal" component={StationModal}
                     
-                    options={ {headerShown: false, presentation: 'modal'}}
+                options={ ({navigation}) =>({
+                    presentation: "modal",
+                    headerTitle: "Stationer", 
+                    headerShown: true,
+                    //headerTitleAlign: "left",
+                    //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                    
+                    headerRight: () =>
+                    <View> 
+                        
+                        <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
+
+                    </View>
+                })}
             />
             <Stack.Screen name="StationFavoriteModal" component={StationFavoriteModal}
+                options={ ({navigation}) =>({
+                presentation: "modal",
+                headerTitle: "Favoritstationer", 
+                headerShown: true,
+                //headerTitleAlign: "left",
+                //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+                
+                headerRight: () =>
+                <View> 
                     
-                    options={ {headerShown: false, presentation: 'modal'}}
+                    <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
+
+                </View>
+            })}
             />
         </Stack.Navigator>  
     );

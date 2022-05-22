@@ -2,6 +2,7 @@ import { Text, View, Modal, Pressable, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TrainList from './TrainList';
 import TrainsAtStation from './TrainsAtStation';
+//Change to modal from stations
 import StationModal from './StationModal';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -52,7 +53,7 @@ export default function Train() {
                     
                     options={ ({navigation}) =>({
                         presentation: "modal",
-                        headerTitle: "Favoritstationer", 
+                        headerTitle: "Stationer", 
                         headerShown: true,
                         //headerTitleAlign: "left",
                         //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},

@@ -16,22 +16,32 @@ export const trainTableIconRow = {
     marginTop: 0
 };
 
+/* export const trainTableCellStrikeThrough = {
+    color: "#000", 
+    textDecorationLine: 'line-through' as "line-through",
+    textDecorationThickness: 10, 
+    fontWeight: 'bold' as 'bold',
+    fontSize: 24,
+    padding:10
+}; */
+
 export const trainTableCellAdvertisedTimeText = {
     color: "#959595", 
-    textDecorationLine: 'line-through',
-    fontWeight: 'bold',
+    textDecorationLine: 'line-through' as "line-through",
+    textDecorationColor: "#000",
+    fontWeight: 'bold' as 'bold',
     fontSize: 17,
     padding:10
 };
 
 export const trainTableCellTextContent = {
-    fontWeight: 'bold',
+    fontWeight: 'bold' as 'bold',
     fontSize: 17
 }
 
 export const trainTableCellEstimatedTimeText = {
-    color: 'red', 
-    fontWeight: 'bold', 
+    color: '#f50000', 
+    fontWeight: 'bold' as 'bold', 
     fontSize: 17
 
 };

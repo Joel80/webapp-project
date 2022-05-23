@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';
-
+import { StationListStyle } from "../../styles";
 
 export default function StationModal({navigation}) {
     
@@ -22,7 +22,11 @@ export default function StationModal({navigation}) {
 
     const Item = ( {item, onPress }) => (
         <TouchableOpacity onPress={onPress}>
-            <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: "#ececed" }}><Text style={{fontSize: 18, fontWeight: "500"}}>{item.AdvertisedLocationName}</Text></View>
+            <View style={StationListStyle.viewStyle}>
+                <Text style={StationListStyle.textStyle}>
+                    {item.AdvertisedLocationName}
+                </Text>
+            </View>
         </TouchableOpacity>
     )
 
@@ -48,7 +52,7 @@ export default function StationModal({navigation}) {
             
                 data={stationList}
                 renderItem={renderItem}
-                contentContainerStyle={{flexGrow: 1, justifyContent: 'center', padding: 15,}}
+                contentContainerStyle={StationListStyle.contentContainerStyle}
             />
         </View>
             

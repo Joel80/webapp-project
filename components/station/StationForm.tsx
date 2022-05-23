@@ -1,4 +1,5 @@
-import { View, Button, Pressable, Text } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
+import { StationFormStyle } from '../../styles/';
 
 
 
@@ -8,8 +9,8 @@ export default function StationForm({navigation}) {
     return (
         
         
-        <View style={{flex: 1, alignItems: "center", marginTop: 40}}>
-            <View style={{flexDirection: "row"}}>
+        <View style={StationFormStyle.outerViewStyle}>
+            <View style={StationFormStyle.innerViewStyle}>
                 <Pressable
                     
                     onPress= { () => {
@@ -33,9 +34,9 @@ export default function StationForm({navigation}) {
                     ]}
                 >
                     
-                    <View style={{paddingRight: 35, paddingLeft: 35, paddingTop: 12, paddingBottom: 12}}>
-                        <Text style={{fontWeight: "100"}}>Lägg till</Text>
-                        <Text style={{fontWeight: '400', fontSize: 20}}>Välj...</Text>
+                    <View style={StationFormStyle.buttonStyle}>
+                        <Text style={StationFormStyle.buttonText1Style}>Lägg till</Text>
+                        <Text style={StationFormStyle.buttonText2Style}>Välj...</Text>
                     </View>
                 </Pressable>
                 <Pressable
@@ -56,9 +57,9 @@ export default function StationForm({navigation}) {
                         }
                     ]}
                 >
-                    <View style={{paddingRight: 35, paddingLeft: 35, paddingTop: 12, paddingBottom: 12}}>
-                        <Text style={{fontWeight: "100"}}>Ta bort</Text>
-                        <Text style={{fontWeight: '400', fontSize: 20}}>Välj...</Text>
+                    <View style={StationFormStyle.buttonStyle}>
+                        <Text style={StationFormStyle.buttonText1Style}>Ta bort</Text>
+                        <Text style={StationFormStyle.buttonText2Style}>Välj...</Text>
                     </View>
                 </Pressable>
             </View>

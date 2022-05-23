@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';

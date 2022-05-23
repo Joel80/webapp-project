@@ -3,7 +3,7 @@
 
 import { render, fireEvent } from '@testing-library/react-native';
 import stationModel from '../models/stations';
-import StationModal from '../components/station/StationModal';
+import StationNonFavoriteList from '../components/station/StationNonFavoriteList';
 
 jest.useFakeTimers();
 
@@ -45,7 +45,7 @@ stationModel.getStations = jest.fn().mockReturnValue(resp2);
 
 test('Table of stations are rendered, favorite stations are not rendered, ', async () => {
 
-const {findByText, queryByText} =  render(<StationModal navigation={navigation} />);
+const {findByText, queryByText} =  render(<StationNonFavoriteList navigation={navigation} />);
 
 // Wait for the station not set to favorite to be displayed  
 const station = await findByText('Astrid Lindgrens värld', { exact: false });

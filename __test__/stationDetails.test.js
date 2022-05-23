@@ -1,9 +1,9 @@
 /**
- * I komponenten <StationDetails> bör en tabell med tåginformation över tåg från en viss station ritas ut.
+ * I komponenten <TrainsAtStation> bör en tabell med tåginformation över tåg från en viss station ritas ut.
  */
- import { render } from '@testing-library/react-native';
- import StationDetails from '../components/station/StationDetails';
- import delayedTrainModel from '../models/delayedTrains';
+import { render } from '@testing-library/react-native';
+import TrainsAtStation from '../components/train/TrainsAtStation';
+import delayedTrainModel from '../models/delayedTrains';
  
  jest.useFakeTimers();
  
@@ -48,7 +48,7 @@ const resp = [
  
  test('Table of trains from the param station are rendered', async () => {
      
-    const {findAllByText, getByText, queryByText} =  render(<StationDetails route={route} />);
+    const {findAllByText, getByText, queryByText} =  render(<TrainsAtStation route={route} />);
     
     // Wait for the text Stockholm Central to be displayed  
     const station = await findAllByText('Stockholm Central', { exact: false });

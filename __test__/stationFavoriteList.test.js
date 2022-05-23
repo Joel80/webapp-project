@@ -3,7 +3,7 @@
 
 import { render, fireEvent } from '@testing-library/react-native';
 import stationModel from '../models/stations';
-import StationFavoriteModal from '../components/station/StationFavoriteModal';
+import StationFavoriteList from '../components/station/StationFavoriteList';
 
 jest.useFakeTimers();
 
@@ -33,7 +33,7 @@ deliveryModel.addDelivery = jest.fn().mockName('addDelivery');
  
  test('Table of favorite stations are rendered, pressing a station calls stationModel.deleteFavoriteStationData ', async () => {
     
-    const {findByText} =  render(<StationFavoriteModal navigation={navigation} />);
+    const {findByText} =  render(<StationFavoriteList navigation={navigation} />);
     
     // Wait for the text Stockholm Central to be displayed  
     const station = await findByText('Stockholm Central', { exact: false });

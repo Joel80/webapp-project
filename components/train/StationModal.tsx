@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View, Button } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';

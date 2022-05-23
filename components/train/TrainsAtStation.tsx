@@ -4,15 +4,11 @@ import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-import { TrainTable } from '../../styles/index';
+import { TrainTableStyle } from '../../styles/index';
+import TrainTable from './TrainTable';
+import { useRoute } from '@react-navigation/native';
 
-function zeroPad(number: number): string {
-    if (number < 10) {
-        return "0" + number;
-    }
-
-    return "" + number;
-}
+/** Renders a list with all delayed trains at a certain station*/
 
 function TrainsAtStationList({route}) {
     //console.log(route);
@@ -28,45 +24,13 @@ function TrainsAtStationList({route}) {
         })();
     }, []);
 
-    // TODO: change to ToLocationName?? check assignment again
-    const trains = delayedTrainsAtStation.filter(train => train.FromLocationName === station.AdvertisedLocationName)
-    .map(function (train, index)  {
-        const advertisedTime = 
-            zeroPad(new Date(train.AdvertisedTimeAtLocation).getHours()) + ':' +
-            zeroPad(new Date(train.AdvertisedTimeAtLocation).getMinutes());
-        const estimatedTime =
-            zeroPad(new Date(train.EstimatedTimeAtLocation).getHours()) + ':' +
-            zeroPad(new Date(train.EstimatedTimeAtLocation).getMinutes());
-
-        return (
-            
-            <ScrollView key={index}>
-                <DataTable.Row style={TrainTable.trainTableRow}>
-                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellTextContent}>
-                        {train.AdvertisedTrainIdent}  {train.FromLocationName}
-                    </DataTable.Cell>
-                    <DataTable.Cell style={TrainTable.trainTableCellText} textStyle={TrainTable.trainTableCellTextContent}>
-                    </DataTable.Cell>
-                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellAdvertisedTimeText} numeric>
-                        {advertisedTime}
-                    </DataTable.Cell>
-                    <DataTable.Cell style={TrainTable.trainTableCellNr} textStyle={TrainTable.trainTableCellEstimatedTimeText} numeric>
-                        {estimatedTime}
-                    </DataTable.Cell>
-                </DataTable.Row>
-                <DataTable.Row style={TrainTable.trainTableIconRow}>
-                    <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>
-                </DataTable.Row>
-            </ScrollView> 
-        )
-    
-    });
+    const trains = delayedTrainsAtStation.filter(train => train.FromLocationName === station.AdvertisedLocationName);
 
     //console.log(trains);
 
     return (
         <View>
-            {trains}
+            <TrainTable trains={trains} />
         </View>
 
     );

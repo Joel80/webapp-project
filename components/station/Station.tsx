@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StationList from './StationList';
-import StationDetails from './StationDetails';
+import StationFavoritesFancyList from './StationFavoritesFancyList';
+import TrainsAtStation from '../train/TrainsAtStation';
 import StationForm from './StationForm';
-import StationModal from './StationModal';
-import StationFavoriteModal from './StationFavoriteModal';
+import StationNonFavoriteList from './StationNonFavoriteList';
+import StationFavoriteList from './StationFavoriteList';
 import { Button, View } from 'react-native';
 import authModel from '../../models/auth';
 
@@ -43,18 +43,29 @@ export default function Station(props) {
 
                 })}
             >
-                {(screenProps) => <StationList {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
+                {(screenProps) => <StationFavoritesFancyList {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
                 
             </Stack.Screen>
             <Stack.Screen name="StationDetails"
-                options={ ({route}) =>({ title: route.params.station.AdvertisedLocationName  })}
+                options={ 
+                    ({route, navigation}) => ({ 
+                        title: route.params.station.AdvertisedLocationName,  
+                        headerLeft: () => 
+                        <View> 
+                            
+                            <Button title="Tillbaka" onPress={(screenProps) => navigation.navigate('List')}/>
+    
+                        </View>
+                    })
+                }
             >
-                {(screenProps) => <StationDetails  {...screenProps}/>}
+                {(screenProps) => <TrainsAtStation  {...screenProps}/>}
             </Stack.Screen>
+
             <Stack.Screen name="Form" 
                 options={ ({navigation}) =>({
-                    presentation: "modal"
-,                    headerTitle: "Ändra favoritstationer", 
+                    presentation: "modal",
+                    headerTitle: "Ändra favoritstationer", 
                     headerShown: true,
                     //headerTitleAlign: "left",
                     //headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
@@ -69,7 +80,7 @@ export default function Station(props) {
             >
                 {(screenProps) => <StationForm  {...screenProps}/>}
             </Stack.Screen>
-            <Stack.Screen name="StationModal" component={StationModal}
+            <Stack.Screen name="StationModal" component={StationNonFavoriteList}
                     
                 options={ ({navigation}) =>({
                     presentation: "modal",
@@ -86,7 +97,7 @@ export default function Station(props) {
                     </View>
                 })}
             />
-            <Stack.Screen name="StationFavoriteModal" component={StationFavoriteModal}
+            <Stack.Screen name="StationFavoriteModal" component={StationFavoriteList}
                 options={ ({navigation}) =>({
                 presentation: "modal",
                 headerTitle: "Favoritstationer", 

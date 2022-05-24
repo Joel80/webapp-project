@@ -23,6 +23,8 @@ const routeIcons = {
   "Logga in": "lock-closed"
 }
 
+type routeIconsKey = keyof typeof routeIcons;
+
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);

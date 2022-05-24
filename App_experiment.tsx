@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Home from './components/Home';
-import TrainMap from './components/TrainMap';
+import TrainMap from './components/train/TrainMap';
 import Station from './components/station/Station';
 import Auth from './components/auth/Auth';
 import { useState, useEffect } from 'react';

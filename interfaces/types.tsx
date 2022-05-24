@@ -49,11 +49,26 @@ type StationStackParamList = {
 
 }
 
+
+
 type StationFavoriteFancyListProps = NativeStackScreenProps<StationStackParamList, 'List'>;
 type StationDetailsProps = NativeStackScreenProps<StationStackParamList, 'StationDetails'>;
 type StationFormProps = NativeStackScreenProps<StationStackParamList, 'Form'>;
 type StationNonFavoriteList = NativeStackScreenProps<StationStackParamList, 'StationModal'>;
 type StationFavoriteListProps = NativeStackScreenProps<StationStackParamList, 'StationFavoriteModal'>;
+
+
+type AuthStackParamList = {
+    Login: {
+
+    };
+
+    Register: {};
+
+}
+
+type AuthLoginProps = NativeStackScreenProps<AuthStackParamList, 'Login'>;
+type AuthRegisterProps = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 export {
     TrainStackParamList,
@@ -65,5 +80,7 @@ export {
     StationDetailsProps,
     StationFormProps,
     StationNonFavoriteList,
-    StationFavoriteListProps
+    StationFavoriteListProps,
+    AuthLoginProps,
+    AuthRegisterProps
 }

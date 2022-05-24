@@ -3,16 +3,16 @@ import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './AuthFields';
 import { showMessage } from "react-native-flash-message";
+import { AuthRegisterProps } from '../../interfaces/types';
 
-
-export default function Register({navigation}) {
+export default function Register({navigation}: {navigation: AuthRegisterProps['navigation']}) {
     const[auth, setAuth] = useState<Partial<Auth>>({});
 
     async function doRegister() {
         if (auth.email && auth.password) {
 
             const result = await authModel.register(auth.email, auth.password);
-            navigation.navigate("Login");
+            navigation.navigate("Login", {});
 
             showMessage({
                 message: result.title,

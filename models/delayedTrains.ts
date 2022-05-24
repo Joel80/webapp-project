@@ -131,7 +131,7 @@ const trains = {
                     }
                 }
 
-                console.log(`${delayedTrain.FromLocation}: long: ${delayedTrain.FromLong} lat: ${delayedTrain.FromLat} `)
+                //console.log(`${delayedTrain.FromLocation}: long: ${delayedTrain.FromLong} lat: ${delayedTrain.FromLat} `)
 
                 delayedTrainsArray.push(delayedTrain);
             }

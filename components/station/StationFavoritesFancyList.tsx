@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Text, View, TouchableOpacity, FlatList } from 'react-native';
-import station from '../../interfaces/station';
+import { Text, View, TouchableOpacity, FlatList, ListRenderItem } from 'react-native';
+import favoriteStation from '../../interfaces/favoriteStation';
 import stationModel from '../../models/stations';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FavoriteStationList } from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
+import { StationFavoriteFancyListProps } from "../../interfaces/types";
 
 /**Renders a fancy list with favorite stations */
 
-export default function StationList({ navigation, route}) {
+export default function StationList({ navigation, route}: StationFavoriteFancyListProps) {
     
-    const { reload } = route.params || false;
+    let { reload } = route.params || false;
 
-    console.log(route?.params?.reload);
+    //console.log(route?.params?.reload);
 
 
-    const [favoriteStations, setFavoriteStations] = useState<station[]>([]);
+    const [favoriteStations, setFavoriteStations] = useState<favoriteStation[]>([]);
     
     useEffect( () => {
         (async () => {
@@ -29,14 +30,15 @@ export default function StationList({ navigation, route}) {
     if (reload) {
         console.log("Reloading favorite stations")
         reloadStations();
-        route.params = false;
+        
     }
 
     async function reloadStations() {
         setFavoriteStations(await stationModel.getFavoriteStationsData());
+        navigation.navigate("List", {reload: false})
     }
 
-    const Item = ( {item, onPress, index } ) => (
+    const Item = ( {item, onPress, index }: {item: favoriteStation, onPress(): void, index: number} ) => (
         <TouchableOpacity onPress={onPress}>
             
             {index % 2 === 0 &&
@@ -69,7 +71,7 @@ export default function StationList({ navigation, route}) {
                                 {item.AdvertisedLocationName}
                             </Text>
                             <Text style={FavoriteStationList.textRight}>
-                                Antal spår: {item.PlatformLine.length}
+                                Antal spår: {item.PlatformLine?.length}
                             </Text>
                         </View>
                         <View style={FavoriteStationList.smallTextView}>
@@ -86,13 +88,12 @@ export default function StationList({ navigation, route}) {
         </TouchableOpacity>
     )
 
-    const renderItem = ({item, index}) => {
+    const renderItem: ListRenderItem<favoriteStation> = ({item, index}) => {
         return (
             <Item
                 item={item}
                 index={index}
                 onPress= { () => {
-                    const station = favoriteStations.find((station) => station.AdvertisedLocationName === item  )
                     navigation.navigate('StationDetails', {
                         station: item
                     });

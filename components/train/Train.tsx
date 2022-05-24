@@ -4,31 +4,11 @@ import TrainList from './TrainList';
 import TrainsAtStation from './TrainsAtStation';
 import StationModal from './StationModal';
 import { Ionicons } from '@expo/vector-icons';
-import stationInterface from '../../interfaces/station';
-import type { RouteProp } from '@react-navigation/native';
+//import stationInterface from '../../interfaces/station';
+import { TrainStackParamList } from '../../interfaces/types';
 
-/**Navigator for train views */
 
-// Type for paramlist for navigator
-type StackParamList ={
-    List: {
-        name: string,
-    };
-
-    StationModal: {
-        name: string,
-    };
-
-    TrainsAtStation: {
-        station: stationInterface,
-        name: string,
-    };
-
-}
-
-type TrainsAtStationRouteProp = RouteProp<StackParamList, 'TrainsAtStation'>
-
-const Stack = createNativeStackNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<TrainStackParamList>();
 
 export default function Train() {
 
@@ -44,7 +24,7 @@ export default function Train() {
                         headerRight: () => 
                         <View style={{flexDirection: 'row'}} >
                             <View>
-                                <Ionicons name="navigate-outline" color={"#217cff"} size={25}/>
+                                <Ionicons name="navigate-outline" color={"#217cff"} size={25} />
                             </View>
 
                             <View style={{marginLeft: 20}}>
@@ -52,14 +32,14 @@ export default function Train() {
                                     name="list-outline" 
                                     color={"#217cff"} 
                                     size={25} 
-                                    onPress={(screenProps) => navigation.navigate('StationModal', {navigation: {navigation}})}
+                                    onPress={() => navigation.navigate('StationModal')}
                                 />
                             </View>
                         </View>,
                     
                         headerLeft: () => 
                         <View style={{flexDirection: 'row'}} >
-                            <View>
+                            <View style={{marginRight: 10}}>
                                 <Ionicons name="heart-outline" color={"#217cff"} size={25}/>
                             </View>
                         </View>,
@@ -76,7 +56,7 @@ export default function Train() {
                         headerTitle: "Stationer", 
                         headerShown: true,
                         
-                        headerLeft: () =>
+                        headerRight: () =>
                         <View> 
                             
                             <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
@@ -92,12 +72,13 @@ export default function Train() {
                     headerLeft: () =>
                     <View> 
                         
-                        <Button title="Tillbaka" onPress={(screenProps) => navigation.navigate('List')}/>
+                        <Button title="Tillbaka" onPress={() => navigation.navigate('List')}/>
 
                     </View>
                 
                 })}
             />
+
         </Stack.Navigator>  
     );
 }

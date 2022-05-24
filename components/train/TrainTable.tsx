@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,7 +14,8 @@ function zeroPad(number: number): string {
     return "" + number;
 }
 
-export default function TrainTable({trains}) {
+
+export default function TrainTable({trains}: {trains: delayedTrain[]}) {
 
    
 

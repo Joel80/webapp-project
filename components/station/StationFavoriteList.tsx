@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View, Button } from "react-native";
+import { Text, TouchableOpacity, View, ListRenderItem } from "react-native";
 import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
-import station from '../../interfaces/station';
+import favoriteStation from '../../interfaces/favoriteStation';
 import { StationListStyle } from '../../styles/'
+import { StationFavoriteListProps } from "../../interfaces/types";
 
-
-export default function StationFavoriteModal({navigation}) {
+export default function StationFavoriteModal({navigation}: {navigation: StationFavoriteListProps['navigation']}) {
     
-    const [favoriteStations, setFavoriteStations] = useState<station[]>([]);
+    const [favoriteStations, setFavoriteStations] = useState<favoriteStation[]>([]);
         
     useEffect( () => {
         (async () => {
@@ -23,7 +23,7 @@ export default function StationFavoriteModal({navigation}) {
     console.log({stationList})
 
 
-    const Item = ( {item, onPress }) => (
+    const Item = ( {item, onPress }: {item: favoriteStation, onPress(): void}) => (
         <TouchableOpacity onPress={onPress}>
             <View style={StationListStyle.viewStyle}>
                 <Text style={StationListStyle.textStyle}>
@@ -33,7 +33,7 @@ export default function StationFavoriteModal({navigation}) {
         </TouchableOpacity>
     )
 
-    const renderItem = ({item}) => {
+    const renderItem: ListRenderItem<favoriteStation> = ({item}) => {
         return (
             <Item
                 item={item}

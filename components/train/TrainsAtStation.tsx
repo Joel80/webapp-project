@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import TrainTable from './TrainTable';
+import { TrainsAtStationProps } from '../../interfaces/types';
 
 
 /** Renders a list with all delayed trains at a certain station*/
 
-function TrainsAtStationList({route}) {
+
+function TrainsAtStationList({route}: {route: TrainsAtStationProps['route']}) {
     const { station } = route.params;
 
 
@@ -30,7 +32,7 @@ function TrainsAtStationList({route}) {
     );
 }
 
-export default function TrainsAtStation({route}) {
+export default function TrainsAtStation({route}: {route: TrainsAtStationProps['route']}) {
     return (
         <ScrollView style={{backgroundColor: "#fff"}}>
             <TrainsAtStationList route={route}/>

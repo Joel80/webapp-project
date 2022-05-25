@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Button} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Train from './components/train/Train';
 import TrainMap from './components/train/TrainMap';
@@ -10,7 +10,7 @@ import Station from './components/station/Station';
 import Auth from './components/auth/Auth';
 import { useState, useEffect } from 'react';
 import authModel from './models/auth';
-import FlashMessage from 'react-native-flash-message';
+import FlashMessage, { Icon } from 'react-native-flash-message';
 
 
 const Tab = createBottomTabNavigator();
@@ -40,8 +40,8 @@ export default function App() {
         <NavigationContainer>
             <Tab.Navigator screenOptions={({ route }) => ({
                 tabBarIcon: ({ color, size }) => {
-                    let iconName = routeIcons[route.name] || "alert";
-                    return <Ionicons name={iconName} size={size} color={color} />
+                    let iconName = routeIcons[route.name as routeIconsKey] || "alert";
+                    return <Ionicons name={iconName as any} size={size} color={color} />
                     },
                     tabBarInactiveTintColor: "grey",
                     tabBarActiveTintColor: "#217cff",

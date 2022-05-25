@@ -5,11 +5,11 @@ import stationModel from '../../models/stations';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FavoriteStationList } from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
-import { StationFavoriteFancyListProps } from "../../types/types";
+import { StationFavoritesListProps } from "../../types/types";
 
 /**Renders a fancy list with favorite stations */
 
-export default function StationList({ navigation, route}: StationFavoriteFancyListProps) {
+export default function StationList({ navigation, route}: StationFavoritesListProps) {
     
     let { reload } = route.params || false;
 

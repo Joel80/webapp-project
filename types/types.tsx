@@ -42,7 +42,7 @@ type StationStackParamList = {
 
 
 
-type StationFavoriteFancyListProps = NativeStackScreenProps<StationStackParamList, 'List'>;
+type StationFavoritesListProps = NativeStackScreenProps<StationStackParamList, 'List'>;
 type StationEditProps = NativeStackScreenProps<StationStackParamList, 'Edit'>;
 type StationAddFavoriteProps = NativeStackScreenProps<StationStackParamList, 'StationAddFavorite'>;
 type StationDeleteFavoriteProps = NativeStackScreenProps<StationStackParamList, 'StationDeleteFavorite'>;
@@ -65,6 +65,7 @@ export {
     TrainsAtStationProps,
     StationModalProps,
     StationStackParamList,
+    StationFavoritesListProps,
     StationEditProps,
     StationAddFavoriteProps,
     StationDeleteFavoriteProps,

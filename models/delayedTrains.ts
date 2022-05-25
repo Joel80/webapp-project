@@ -4,9 +4,6 @@ import delayedTrainInterface from '../interfaces/delayedTrain';
 import Train from '../interfaces/train';
 import Station from '../interfaces/station';
 
-
-//Usable regex:  /(-\d+|\d+)(,\d+)*(\.\d+)*/g or (/(\d+)(\.\d+)/g)
-
 const trains = {
     getDelayedTrains: async function getDelayedTrains() {
         console.log("Calling getDelayedTrains");
@@ -56,7 +53,6 @@ const trains = {
 
             let trainDelayedBy: number = 0;
 
-            let walkingDistance: number = 0;
 
            
             for (const station of stations) {
@@ -125,9 +121,21 @@ const trains = {
 
                 // Check if there are overlapping coords, if so slightly change them
                 // so that two trains dont overlap in map
+                let counter = 0;
+
                 for (const train of delayedTrainsArray) {
+                    // Check if position is already taken by another train
                     if (delayedTrain.FromLat === train.FromLat && delayedTrain.FromLong === train.FromLong) {
-                        delayedTrain.FromLat += 2/111111
+                        if (counter % 2 === 0 ) {
+                            // Move trainpos by latitude
+                            delayedTrain.FromLat += 2/111111
+                        } else {
+                            //Move trainpos by longitude
+                            delayedTrain.FromLong += 2 / (111111*Math.cos(10))
+                        }
+                        
+
+                        counter ++;
                     }
                 }
 

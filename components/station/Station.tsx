@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import StationFavoritesFancyList from './StationFavoritesFancyList';
+import StationFavoritesList from './StationFavoritesList';
 import TrainsAtStation from '../train/TrainsAtStation';
-import StationForm from './StationForm';
-import StationNonFavoriteList from './StationNonFavoriteList';
-import StationFavoriteList from './StationFavoriteList';
+import StationEdit from './StationEdit';
+import StationAddFavorite from './StationAddFavorite';
+import StationDeleteFavorite from './StationDeleteFavorite';
 import { Button, View } from 'react-native';
 import authModel from '../../models/auth';
 import { StationStackParamList } from '../../interfaces/types';
@@ -14,7 +14,7 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
     return (
         <Stack.Navigator initialRouteName="List" >
             <Stack.Screen name="List" 
-                component={StationFavoritesFancyList} 
+                component={StationFavoritesList} 
                 options={ ({navigation}) =>({
 
                     headerTitle: "Favoritstationer", 
@@ -23,7 +23,7 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
                     headerRight: () =>
                     <View> 
                         
-                        <Button title="Ändra" onPress={() => navigation.navigate('Form')}/>
+                        <Button title="Ändra" onPress={() => navigation.navigate('Edit')}/>
 
                     </View>,
 
@@ -42,7 +42,7 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
 
                 })}
             />
-            <Stack.Screen name="StationDetails"
+            <Stack.Screen name="TrainsAtStation"
                 component={TrainsAtStation}
                 options={ 
                     ({route, navigation}) => ({ 
@@ -57,7 +57,7 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
                 }
             />
 
-            <Stack.Screen name="Form" 
+            <Stack.Screen name="Edit" 
                 options={ ({navigation}) =>({
                     presentation: "modal",
                     headerTitle: "Ändra favoritstationer", 
@@ -71,9 +71,9 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
                     </View>
                 })}
             >
-                {(screenProps) => <StationForm  {...screenProps}/>}
+                {(screenProps) => <StationEdit  {...screenProps}/>}
             </Stack.Screen>
-            <Stack.Screen name="StationModal" component={StationNonFavoriteList}
+            <Stack.Screen name="StationAddFavorite" component={StationAddFavorite}
                     
                 options={ ({navigation}) =>({
                     presentation: "modal",
@@ -88,7 +88,7 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
                     </View>
                 })}
             />
-            <Stack.Screen name="StationFavoriteModal" component={StationFavoriteList}
+            <Stack.Screen name="StationDeleteFavorite" component={StationDeleteFavorite}
                 options={ ({navigation}) =>({
                 presentation: "modal",
                 headerTitle: "Favoritstationer", 

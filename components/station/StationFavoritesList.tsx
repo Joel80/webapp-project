@@ -94,7 +94,7 @@ export default function StationList({ navigation, route}: StationFavoriteFancyLi
                 item={item}
                 index={index}
                 onPress= { () => {
-                    navigation.navigate('StationDetails', {
+                    navigation.navigate('TrainsAtStation', {
                         station: item
                     });
                 }}

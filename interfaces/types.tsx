@@ -29,24 +29,16 @@ type StationStackParamList = {
         reload: boolean
     };
 
-    StationDetails: {
+    TrainsAtStation: {
         station: favoriteStationInterface,
 
     };
 
-    Form: {
-        name: string
-    };
+    Edit: undefined;
 
-    StationModal: {
-       /*  name: string, */
-        /* reload: boolean */
-    };
+    StationAddFavorite: undefined;
 
-    StationFavoriteModal: {
-        /* name: string, */
-    };
-
+    StationDeleteFavorite: undefined;
 }
 
 

@@ -15,9 +15,7 @@ export default function StationForm({navigation}: {navigation: StationFormProps[
                     
                     onPress= { () => {
                         
-                            navigation.navigate('StationModal', {
-                                
-                            });
+                            navigation.navigate('StationAddFavorite');
                     }}
 
                     style={({ pressed }) => [
@@ -41,8 +39,7 @@ export default function StationForm({navigation}: {navigation: StationFormProps[
                 </Pressable>
                 <Pressable
                     onPress= { () => {
-                        navigation.navigate('StationFavoriteModal', {
-                        });
+                        navigation.navigate('StationDeleteFavorite');
                     }}
 
                     style={({ pressed }) => [

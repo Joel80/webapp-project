@@ -6,7 +6,7 @@ import StationAddFavorite from './StationAddFavorite';
 import StationDeleteFavorite from './StationDeleteFavorite';
 import { Button, View } from 'react-native';
 import authModel from '../../models/auth';
-import { StationStackParamList } from '../../interfaces/types';
+import { StationStackParamList } from '../../types/types';
 
 const Stack = createNativeStackNavigator<StationStackParamList>();
 

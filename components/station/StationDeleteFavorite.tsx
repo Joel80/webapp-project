@@ -3,10 +3,10 @@ import { Text, TouchableOpacity, View, ListRenderItem } from "react-native";
 import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import favoriteStation from '../../interfaces/favoriteStation';
-import { StationListStyle } from '../../styles/'
-import { StationFavoriteListProps } from "../../interfaces/types";
+import { StationListStyle } from '../../styles'
+import { StationDeleteFavoriteProps } from "../../types/types";
 
-export default function StationFavoriteModal({navigation}: {navigation: StationFavoriteListProps['navigation']}) {
+export default function StationFavoriteModal({navigation}: {navigation: StationDeleteFavoriteProps['navigation']}) {
     
     const [favoriteStations, setFavoriteStations] = useState<favoriteStation[]>([]);
         

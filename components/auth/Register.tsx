@@ -3,7 +3,7 @@ import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './AuthFields';
 import { showMessage } from "react-native-flash-message";
-import { AuthRegisterProps } from '../../interfaces/types';
+import { AuthRegisterProps } from '../../types/types';
 
 export default function Register({navigation}: {navigation: AuthRegisterProps['navigation']}) {
     const[auth, setAuth] = useState<Partial<Auth>>({});

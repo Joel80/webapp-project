@@ -3,7 +3,7 @@
 
 import { render, fireEvent } from '@testing-library/react-native';
 import stationModel from '../models/stations';
-import StationNonFavoriteList from '../components/station/StationNonFavoriteList';
+import StationNonFavoriteList from '../components/station/StationAddFavorite';
 
 jest.useFakeTimers();
 

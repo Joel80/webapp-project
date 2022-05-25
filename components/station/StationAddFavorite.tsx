@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
-import { StationNonFavoriteList } from "../../interfaces/types";
+import { StationNonFavoriteList } from "../../types/types";
 
 export default function StationModal({navigation}: {navigation: StationNonFavoriteList['navigation']}) {
     

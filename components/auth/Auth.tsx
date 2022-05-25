@@ -5,11 +5,11 @@ import Register from './Register';
 
 const Stack = createNativeStackNavigator();
 
-export default function Auth(props) {
+export default function Auth({setIsLoggedIn}: {setIsLoggedIn(param: boolean): void}) {
     return (
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" options={{headerShown: true, headerTitle: "Logga in"}}>
-                { (screenProps) => <Login {...screenProps} setIsLoggedIn={props.setIsLoggedIn} />}
+                { (screenProps) => <Login {...screenProps} setIsLoggedIn={setIsLoggedIn} />}
             </Stack.Screen>
             <Stack.Screen name="Register" component={Register} options={{headerShown: true, headerTitle: "Registrera"}}/>
         </Stack.Navigator>

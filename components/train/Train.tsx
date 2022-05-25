@@ -5,7 +5,7 @@ import TrainsAtStation from './TrainsAtStation';
 import StationModal from './StationModal';
 import { Ionicons } from '@expo/vector-icons';
 //import stationInterface from '../../interfaces/station';
-import { TrainStackParamList } from '../../interfaces/types';
+import { TrainStackParamList } from '../../types/types';
 
 
 const Stack = createNativeStackNavigator<TrainStackParamList>();

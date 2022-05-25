@@ -1,10 +1,10 @@
 import { View, Pressable, Text } from 'react-native';
 import { StationFormStyle } from '../../styles/';
-import { StationFormProps } from "../../interfaces/types";
+import { StationEditProps } from "../../types/types";
 
 
 
-export default function StationForm({navigation}: {navigation: StationFormProps['navigation']}) {
+export default function StationForm({navigation}: {navigation: StationEditProps['navigation']}) {
     
     return (
         

@@ -5,7 +5,7 @@ import stationModel from '../../models/stations';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FavoriteStationList } from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
-import { StationFavoriteFancyListProps } from "../../interfaces/types";
+import { StationFavoriteFancyListProps } from "../../types/types";
 
 /**Renders a fancy list with favorite stations */
 

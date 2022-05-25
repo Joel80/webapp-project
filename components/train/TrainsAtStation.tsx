@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import TrainTable from './TrainTable';
-import { TrainsAtStationProps } from '../../interfaces/types';
+import { TrainsAtStationProps } from '../../types/types';
 
 
 /** Renders a list with all delayed trains at a certain station*/

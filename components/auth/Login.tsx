@@ -3,7 +3,7 @@ import { useState } from 'react';
 import authModel from '../../models/auth';
 import AuthFields from './AuthFields';
 import { showMessage } from "react-native-flash-message";
-import { AuthLoginProps } from '../../interfaces/types';
+import { AuthLoginProps } from '../../types/types';
 
 
 export default function Login({navigation, setIsLoggedIn}: {setIsLoggedIn(params: boolean): void, navigation: AuthLoginProps['navigation']}) {

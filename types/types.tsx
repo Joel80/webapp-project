@@ -1,8 +1,8 @@
-import stationInterface from './station';
-import favoriteStationInterface from './favoriteStation';
+import stationInterface from '../interfaces/station';
+import favoriteStationInterface from '../interfaces/favoriteStation';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { RouteProp } from '@react-navigation/native';
-import { ReactNode } from 'react';
+
+
 
 type TrainStackParamList = {
     List: {
@@ -22,7 +22,6 @@ type TrainStackParamList = {
 
 type StationModalProps = NativeStackScreenProps<TrainStackParamList, 'StationModal'>;
 type TrainsAtStationProps = NativeStackScreenProps<TrainStackParamList, 'TrainsAtStation'>;
-type TrainsAtStationRouteProp = RouteProp<TrainStackParamList, 'TrainsAtStation'>;
 
 type StationStackParamList = {
     List: {
@@ -44,10 +43,9 @@ type StationStackParamList = {
 
 
 type StationFavoriteFancyListProps = NativeStackScreenProps<StationStackParamList, 'List'>;
-type StationDetailsProps = NativeStackScreenProps<StationStackParamList, 'StationDetails'>;
-type StationFormProps = NativeStackScreenProps<StationStackParamList, 'Form'>;
-type StationNonFavoriteList = NativeStackScreenProps<StationStackParamList, 'StationModal'>;
-type StationFavoriteListProps = NativeStackScreenProps<StationStackParamList, 'StationFavoriteModal'>;
+type StationEditProps = NativeStackScreenProps<StationStackParamList, 'Edit'>;
+type StationAddFavoriteProps = NativeStackScreenProps<StationStackParamList, 'StationAddFavorite'>;
+type StationDeleteFavoriteProps = NativeStackScreenProps<StationStackParamList, 'StationDeleteFavorite'>;
 
 
 type AuthStackParamList = {
@@ -65,14 +63,11 @@ type AuthRegisterProps = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 export {
     TrainStackParamList,
     TrainsAtStationProps,
-    TrainsAtStationRouteProp,
     StationModalProps,
     StationStackParamList,
-    StationFavoriteFancyListProps,
-    StationDetailsProps,
-    StationFormProps,
-    StationNonFavoriteList,
-    StationFavoriteListProps,
+    StationEditProps,
+    StationAddFavoriteProps,
+    StationDeleteFavoriteProps,
     AuthLoginProps,
     AuthRegisterProps
 }

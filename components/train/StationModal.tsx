@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
-import { StationModalProps } from "../../interfaces/types";
+import { StationModalProps } from "../../types/types";
 
 
 

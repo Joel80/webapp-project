@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FavoriteStationList } from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
 import { StationFavoritesListProps } from "../../types/types";
+import { TrainTableStyle } from '../../styles';
 
 /**Renders a fancy list with favorite stations */
 
@@ -105,8 +106,9 @@ export default function StationList({ navigation, route}: StationFavoritesListPr
     };
    
     return (
-        <View>
+        <View style={{backgroundColor: "#fff"}}>
             <FlatList 
+                ListHeaderComponent={<Text style={TrainTableStyle.trainTableHeading}>Favoritstationer</Text>}
             
                 data={favoriteStations}
                 renderItem={renderItem}

@@ -3,6 +3,7 @@ import { ScrollView, View, Text } from 'react-native';
 import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import TrainTable from './TrainTable';
+import { TrainTableStyle } from '../../styles';
 
 /** Renders a list with all delayed trains */
 function TrainList() {
@@ -21,7 +22,7 @@ function TrainList() {
     return (
 
         <View>
-            <Text style={{fontSize: 30, fontWeight: "bold", borderBottomColor: "#000", borderBottomWidth: 5, padding: 5}}>Tågförseningar</Text>            
+            <Text style={{fontSize: 30, fontWeight: "bold", borderBottomColor: "#000", borderBottomWidth: 5, padding: 5}}>Tågförseningar</Text>
             <TrainTable trains={trains} />
         </View>
 

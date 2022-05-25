@@ -16,14 +16,13 @@ export const trainTableIconRow = {
     marginTop: 0
 };
 
-/* export const trainTableCellStrikeThrough = {
-    color: "#000", 
-    textDecorationLine: 'line-through' as "line-through",
-    textDecorationThickness: 10, 
-    fontWeight: 'bold' as 'bold',
-    fontSize: 24,
-    padding:10
-}; */
+export const trainTableHeading = {
+    fontSize: 30,
+    fontWeight: "bold" as "bold",
+    borderBottomColor: "#000",
+    borderBottomWidth: 5,
+    padding: 5
+};
 
 export const trainTableCellAdvertisedTimeText = {
     color: "#959595", 

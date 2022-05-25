@@ -22,7 +22,7 @@ function TrainList() {
     return (
 
         <View>
-            <Text style={{fontSize: 30, fontWeight: "bold", borderBottomColor: "#000", borderBottomWidth: 5, padding: 5}}>Tågförseningar</Text>
+            <Text style={TrainTableStyle.trainTableHeading}>Tågförseningar</Text>
             <TrainTable trains={trains} />
         </View>
 

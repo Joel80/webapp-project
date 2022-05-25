@@ -24,14 +24,17 @@ export default function Train() {
                         headerRight: () => 
                         <View style={{flexDirection: 'row'}} >
                             <View>
-                                <Ionicons name="navigate-outline" color={"#217cff"} size={25} />
+                                <Ionicons name="navigate-outline" color={"#217cff"} size={22} 
+                                    onPress={() => navigation.navigate('Karta')}
+                                />
+                                
                             </View>
 
                             <View style={{marginLeft: 20}}>
                                 <Ionicons  
                                     name="list-outline" 
                                     color={"#217cff"} 
-                                    size={25} 
+                                    size={28} 
                                     onPress={() => navigation.navigate('StationModal')}
                                 />
                             </View>
@@ -59,7 +62,7 @@ export default function Train() {
                         headerRight: () =>
                         <View> 
                             
-                            <Button title="Avbryt" onPress={(screenProps) => navigation.navigate('List')}/>
+                            <Button title="Avbryt" onPress={() => navigation.navigate('List')}/>
     
                         </View>
                     })}

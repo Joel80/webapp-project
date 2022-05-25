@@ -4,9 +4,9 @@ import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
-import { StationNonFavoriteList } from "../../types/types";
+import { StationAddFavoriteProps } from "../../types/types";
 
-export default function StationModal({navigation}: {navigation: StationNonFavoriteList['navigation']}) {
+export default function StationModal({navigation}: {navigation: StationAddFavoriteProps['navigation']}) {
     
     const [stations, setStations] = useState<station[]>([]);
     const [favoriteStations, setFavoriteStations] = useState<station[]>([]);

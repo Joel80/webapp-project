@@ -1,9 +1,9 @@
-// Komponenten StationModal bör generera en lista med stationsnamn utan favoritstationer. När användaren
+// Komponenten StationAddFavorite bör generera en lista med stationsnamn utan favoritstationer. När användaren
 // trycker på en station ska funktionen stationModel.createFavoriteStationData anropas.
 
 import { render, fireEvent } from '@testing-library/react-native';
 import stationModel from '../models/stations';
-import StationNonFavoriteList from '../components/station/StationAddFavorite';
+import StationAddFavorite from '../components/station/StationAddFavorite';
 
 jest.useFakeTimers();
 
@@ -45,7 +45,7 @@ stationModel.getStations = jest.fn().mockReturnValue(resp2);
 
 test('Table of stations are rendered, favorite stations are not rendered, ', async () => {
 
-const {findByText, queryByText} =  render(<StationNonFavoriteList navigation={navigation} />);
+const {findByText, queryByText} =  render(<StationAddFavorite navigation={navigation} />);
 
 // Wait for the station not set to favorite to be displayed  
 const station = await findByText('Astrid Lindgrens värld', { exact: false });

@@ -1,9 +1,9 @@
-// Komponenten StationFavoriteModal bör generera en lista med stationsnamn. När användaren
+// Komponenten StationDeleteFavorite bör generera en lista med stationsnamn. När användaren
 // trycker på en station ska funktionen stationModel.deleteFavoriteStationData anropas.
 
 import { render, fireEvent } from '@testing-library/react-native';
 import stationModel from '../models/stations';
-import StationFavoriteList from '../components/station/StationDeleteFavorite';
+import StationDeleteFavorite from '../components/station/StationDeleteFavorite';
 
 jest.useFakeTimers();
 
@@ -33,7 +33,7 @@ deliveryModel.addDelivery = jest.fn().mockName('addDelivery');
  
  test('Table of favorite stations are rendered, pressing a station calls stationModel.deleteFavoriteStationData ', async () => {
     
-    const {findByText} =  render(<StationFavoriteList navigation={navigation} />);
+    const {findByText} =  render(<StationDeleteFavorite navigation={navigation} />);
     
     // Wait for the text Stockholm Central to be displayed  
     const station = await findByText('Stockholm Central', { exact: false });

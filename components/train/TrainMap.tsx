@@ -6,6 +6,7 @@ import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import delayedTrainsModel from '../../models/delayedTrains';
 import DelayedTrain from '../../interfaces/delayedTrain';
+import utils from '../../utils/utils';
 
 export default function TrainMap() {
     const defaultLatitude = 60.128161 //59.3293235;
@@ -47,38 +48,40 @@ export default function TrainMap() {
 
     const markers = trains.map((train, index) => 
         <Marker
-        key={index}
-        coordinate={{ latitude: train.FromLat,  longitude: train.FromLong  }}
-        title={train.FromLocationName}
-        identifier={train.FromLocationName}
-        description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
-        onPress={() => {
-            console.log("Pressing the marker");
-            let reach = calculateReach(train.DelayedBy);
-            if (reach < 0) {
-                reach = 0;
-            }
+            key={index}
+            coordinate={{ latitude: train.FromLat,  longitude: train.FromLong  }}
+            title={train.FromLocationName}
+            identifier={train.FromLocationName}
+            description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
+            onPress={() => {
+                console.log("Pressing the marker");
+                let reach = utils.calculateReach(train.DelayedBy);
+                if (reach < 0) {
+                    reach = 0;
+                }
 
-            console.log(reach);
-            const walkingCircle = 
-            <Circle 
-                center={{latitude: train.FromLat, longitude: train.FromLong  }}
-                radius={reach}
-                fillColor={'rgba(255,0,0, 0.2)'}
-                strokeColor={'rgba(255,0,0, 0.5)'}
-            />
-            //console.log(walkingCircle);
-            setCircle(walkingCircle);
+                console.log(reach);
+                const walkingCircle = 
+                <Circle 
+                    center={{latitude: train.FromLat, longitude: train.FromLong  }}
+                    radius={reach}
+                    fillColor={'rgba(255,0,0, 0.2)'}
+                    strokeColor={'rgba(255,0,0, 0.5)'}
+                />
+                //console.log(walkingCircle);
+                setCircle(walkingCircle);
 
-        }}
+            }}
+            testID= {`Marker: ${index}`}
         />
     );
+    
     //console.log(markers);
 
-    function calculateReach(delayTime: number): number {
+  /*   function calculateReach(delayTime: number): number {
         delayTime -= 5;
         return (delayTime*100/2);
-    }     
+    }  */    
 
     useEffect ( () => {
         (async () => {
@@ -102,36 +105,6 @@ export default function TrainMap() {
         }) ();
     }, []);
 
-
-    /* useEffect( () => {
-
-    }, [circle]) */
-
-    // UseEffect for markers, run when markers array changes
- /*    useEffect ( () => {
-        console.log("Checking markers update");
-        // If both identifiers are in the array
-        if (markers.includes("deliveryMarker" && "userMarker")) {
-            // Call fitToMarkers with markers array to fit map
-            // to markers
-            fitToMarkers(markers);
-        }
-        
-    }, [markers]) */
-
- /*      
-    function fitToMarkers (markers: string[]) {
-        console.log("Fitting to markers");
-        
-        // If mapRef.current is not null
-        // call method fitToSuppliedMarkers with markers array 
-        if (mapRef.current !== null) {
-            mapRef.current.fitToSuppliedMarkers(markers);
-        }
-       
-    } */
-
-
        
     return (
         <View style={styles.container}>
@@ -147,15 +120,9 @@ export default function TrainMap() {
                 ref={mapRef}
                 
             >
-                {/* <Circle 
-                    center={{latitude: defaultLatitude, longitude: defaultLongitude}}
-                    radius={20000}
-                    fillColor={'rgba(255,0,0, 0.2)'}
-                    strokeColor={'rgba(255,0,0, 0.5)'}
-                /> */}
-                {circle}
-                {markers}
-                {userMarker}
+            {circle}
+            {markers}
+            {userMarker}
             </MapView>
         </View>
     );   

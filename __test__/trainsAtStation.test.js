@@ -5,17 +5,17 @@ import { render } from '@testing-library/react-native';
 import TrainsAtStation from '../components/train/TrainsAtStation';
 import delayedTrainModel from '../models/delayedTrains';
  
- jest.useFakeTimers();
+jest.useFakeTimers();
  
- // Mock the delayed trains model
- jest.mock('../models/delayedTrains');
+// Mock the delayed trains model
+jest.mock('../models/delayedTrains');
  
  
- const route = {params: {
-     station: {
-        AdvertisedLocationName: "Stockholm Central",
-     } 
- }};
+const route = {params: {
+    station: {
+    AdvertisedLocationName: "Stockholm Central",
+    } 
+}};
 
 // Silence warning Animated: `useNativeDriver` is not supported because the native animated module is missing.
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

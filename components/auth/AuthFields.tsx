@@ -93,7 +93,7 @@ export default function AuthFields (
                 testID="password-field"
             />
             <Button
-                title= "Logga in"
+                title= {title}
                 onPress= { () => {
                     if(validPassword && validEmail) {
                         submit();

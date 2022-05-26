@@ -10,7 +10,9 @@ import { TrainStackParamList } from '../../types/types';
 
 const Stack = createNativeStackNavigator<TrainStackParamList>();
 
-export default function Train() {
+export default function Train({isLoggedIn}: {isLoggedIn: Boolean}) {
+
+    console.log(isLoggedIn);
 
     return (
         <Stack.Navigator initialRouteName="List">
@@ -40,12 +42,22 @@ export default function Train() {
                             </View>
                         </View>,
                     
-                        headerLeft: () => 
+                        headerLeft: () =>
+                        
                         <View style={{flexDirection: 'row'}} >
+                           
                             <View style={{marginRight: 10}}>
-                                <Ionicons name="heart-outline" color={"#217cff"} size={25}/>
+                                {isLoggedIn ?
+                                    <Ionicons name="heart-outline" color={"#217cff"} size={22} onPress={() => navigation.navigate('Stationer')}/>
+                                    :
+                                    <Ionicons name="lock-closed-outline" color={"#217cff"} size={22} />
+                                }
                             </View>
-                        </View>,
+
+
+                            
+                            
+                        </View>
                
 
                     })

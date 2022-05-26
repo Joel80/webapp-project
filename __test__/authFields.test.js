@@ -22,7 +22,7 @@ const navigation = () => false;
 const title = "Logga in"
 
 test('fields for email and password should exist', async () => {
-    const { getAllByText, getByTestId, getByA11yLabel } = render(<AuthFields 
+    const { getByTestId, getByA11yLabel } = render(<AuthFields 
         auth={auth} 
         setAuth={setAuth} 
         title={title} 

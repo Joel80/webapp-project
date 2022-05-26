@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 import delayedTrainsModel from '../../models/delayedTrains';
 import DelayedTrain from '../../interfaces/delayedTrain';
 import utils from '../../utils/utils';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TrainMap() {
     const defaultLatitude = 60.128161 //59.3293235;
@@ -25,6 +26,8 @@ export default function TrainMap() {
             title="Förvald användarmarkör"
         />
     );
+
+    const [showInformation, setShowInformation] = useState<Boolean>(false);
 
     const [errorMessage, setErrorMessage] = useState('');
     
@@ -78,10 +81,7 @@ export default function TrainMap() {
     
     //console.log(markers);
 
-  /*   function calculateReach(delayTime: number): number {
-        delayTime -= 5;
-        return (delayTime*100/2);
-    }  */    
+    
 
     useEffect ( () => {
         (async () => {
@@ -107,24 +107,54 @@ export default function TrainMap() {
 
        
     return (
-        <View style={styles.container}>
-            <MapView
-                key={markers.length}                   
-                style={styles.map}
-                initialRegion={{
-                    latitude: defaultLatitude,
-                    longitude:defaultLongitude,
-                    latitudeDelta: defaultLatitudeDelta,
-                    longitudeDelta: defaultLongitudeDelta,
-                }}
-                ref={mapRef}
+
+        <View style={{flex: 1}}>
+            <View style={styles.container}>
+                <MapView
+                    key={markers.length}                   
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: defaultLatitude,
+                        longitude:defaultLongitude,
+                        latitudeDelta: defaultLatitudeDelta,
+                        longitudeDelta: defaultLongitudeDelta,
+                    }}
+                    ref={mapRef}
+                    
+                >
+                    {circle}
+                    {markers}
+                    {userMarker}
+                </MapView>
+            
+            <Ionicons 
+                style = {{marginBottom: 25, marginLeft: 325}}
+                name="information-circle" 
+                size={50} 
+                color={"#217cff"}
+                onPress={() => setShowInformation(!showInformation)}
+            />
+         
+            </View>
+
+            
+
+            <View>
+                {
+                    showInformation &&
+                    <Text style={{margin: 20}}> 
+                        Kartan visar tågförseningar. Genom att trycka på en försening
+                        får du fram information om förseningen. Om förseningen är mer 
+                        än 5 minuter ritas också ett område som motsvarar hur långt 
+                        du hinner gå utan att missa tåget ut på kartan. Flera förseningar
+                        kan finnas vid samma station, zooma in för att se dessa. Den blå markören
+                        visar din position.
+                    </Text>
+                }
                 
-            >
-            {circle}
-            {markers}
-            {userMarker}
-            </MapView>
+            </View>
         </View>
+        
     );   
 };
 

@@ -24,3 +24,8 @@ export const buttonText2Style = {
     fontWeight: '400' as "400", 
     fontSize: 20
 };
+
+export const text ={
+    marginTop: 30,
+    fontWeight: '100' as "100", 
+};

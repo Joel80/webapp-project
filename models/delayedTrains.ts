@@ -114,7 +114,7 @@ const trains = {
                 FromLong: trainFromLong,
                 ToLat: trainToLat,
                 ToLong: trainToLong,
-                DelayedBy: trainDelayedBy, 
+                DelayedBy: trainDelayedBy,
             };
             // Only push delayed trains with a from latitude to array
             if (delayedTrain.FromLat !== -0.0) {

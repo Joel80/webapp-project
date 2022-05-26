@@ -60,6 +60,7 @@ export default function StationForm({navigation}: {navigation: StationEditProps[
                     </View>
                 </Pressable>
             </View>
+                <Text style={StationFormStyle.text}>Välj station att lägga till eller ta bort.</Text>
         </View>
         
         

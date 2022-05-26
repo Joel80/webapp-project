@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import delayedTrain from '../../interfaces/delayedTrain';
 import { DataTable } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
@@ -30,11 +30,14 @@ export default function TrainTable({trains}: {trains: delayedTrain[]}) {
         return (
             <View key={index}>
                     <DataTable.Row style={TrainTableStyle.trainTableRow}>
-                        <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellTextContent}>
-                            {train.AdvertisedTrainIdent}  {train.FromLocationName}
-                        </DataTable.Cell>
-                        <DataTable.Cell style={TrainTableStyle.trainTableCellText} textStyle={TrainTableStyle.trainTableCellTextContent}>
-                        </DataTable.Cell>
+                        <View style={{flex: 1, flexDirection: "row" }}>
+                            <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellTextContent}>
+                                {train.AdvertisedTrainIdent}    
+                            </DataTable.Cell>
+                            <DataTable.Cell style={TrainTableStyle.trainTableCellText} textStyle={TrainTableStyle.trainTableCellTextContent}>
+                                {train.FromLocationName}
+                            </DataTable.Cell>
+                        </View>
                         <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellAdvertisedTimeText} numeric>
                             {advertisedTime}
                         </DataTable.Cell>

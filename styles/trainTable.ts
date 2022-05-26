@@ -46,9 +46,11 @@ export const trainTableCellEstimatedTimeText = {
 };
 
 export const trainTableCellNr = {
-    flex:0
+    flex: 0,
+    marginRight: 15
+   
 };
 
 export const trainTableCellText = {
-    flex:1
+    flex: 1,
 };

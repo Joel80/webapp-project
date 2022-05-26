@@ -4,11 +4,11 @@ import { FlatList } from "react-native";
 import stationModel from '../../models/stations';
 import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
-import { StationModalProps } from "../../types/types";
+import { StationSelectProps } from "../../types/types";
 
 
 
-export default function StationModal({navigation}: StationModalProps) {
+export default function StationModal({navigation}: StationSelectProps) {
     
     const [stations, setStations] = useState<station[]>([]);
 
@@ -41,8 +41,7 @@ export default function StationModal({navigation}: StationModalProps) {
                 onPress= { () => {
                     navigation.goBack();
                     navigation.navigate('TrainsAtStation', {
-                        station: item,
-                        name: 'TrainsAtStation'
+                        station: item
                     });
                 }}
             />

@@ -2,7 +2,7 @@ import { View, Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TrainList from './TrainList';
 import TrainsAtStation from './TrainsAtStation';
-import StationModal from './StationModal';
+import StationSelect from '../station/StationSelect';
 import { Ionicons } from '@expo/vector-icons';
 //import stationInterface from '../../interfaces/station';
 import { TrainStackParamList } from '../../types/types';
@@ -35,7 +35,7 @@ export default function Train() {
                                     name="list-outline" 
                                     color={"#217cff"} 
                                     size={28} 
-                                    onPress={() => navigation.navigate('StationModal')}
+                                    onPress={() => navigation.navigate('StationSelect')}
                                 />
                             </View>
                         </View>,
@@ -52,7 +52,7 @@ export default function Train() {
                 }
             
             />         
-            <Stack.Screen name="StationModal" component={StationModal}
+            <Stack.Screen name="StationSelect" component={StationSelect}
                     
                     options={ ({navigation}) =>({
                         presentation: "modal",

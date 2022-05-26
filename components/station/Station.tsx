@@ -7,6 +7,7 @@ import StationDeleteFavorite from './StationDeleteFavorite';
 import { Button, View } from 'react-native';
 import authModel from '../../models/auth';
 import { StationStackParamList } from '../../types/types';
+import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator<StationStackParamList>();
 
@@ -29,13 +30,15 @@ export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean)
 
                     headerLeft: () =>
                     <View style={{marginRight: 10}}> 
-                        
-                        <Button title="Logga ut" onPress={ () => {
+                        <Ionicons 
+                            name={'log-out-outline'}
+                            size={30}
+                            color={"#217cff"}
+                            onPress={ () => {
                                 authModel.logout();
                                 setIsLoggedIn(false);
                             }}
                         />
-
                     </View>
                     
 

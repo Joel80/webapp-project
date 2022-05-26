@@ -21,7 +21,7 @@ const navigation = () => false;
 
 const title = "Logga in"
 
-test('fields for email and password should exist', async () => {
+test('fields for email and password should exist, when user presses the button the function passed to the component should be called', async () => {
     const { getByTestId, getByA11yLabel } = render(<AuthFields 
         auth={auth} 
         setAuth={setAuth} 

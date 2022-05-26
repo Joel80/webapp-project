@@ -28,12 +28,15 @@ type routeIconsKey = keyof typeof routeIcons;
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  
   useEffect(() => {
     (async () => {
       setIsLoggedIn(await authModel.loggedIn());
     })();   
   }, []);
 
+
+  console.log(isLoggedIn);
    return (
 
     <SafeAreaView style={styles.container}>
@@ -47,7 +50,9 @@ export default function App() {
                     tabBarActiveTintColor: "#217cff",
                 })}
             >
-                <Tab.Screen name="Tåg" component={Train}  options={{headerShown: false}}/>
+                <Tab.Screen name="Tåg" options={{headerShown: false}}>
+                    { () => <Train isLoggedIn={isLoggedIn}/>}
+                </Tab.Screen>
                 
                 <Tab.Screen name="Karta" component={TrainMap} options={{headerShown: false,}}/>
                 {isLoggedIn ?

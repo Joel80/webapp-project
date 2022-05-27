@@ -30,17 +30,19 @@ export default function TrainTable({trains}: {trains: delayedTrain[]}) {
         return (
             <View key={index}>
                     <DataTable.Row style={TrainTableStyle.trainTableRow}>
-                            <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellTextContent}>
-                                {train.AdvertisedTrainIdent}    {train.FromLocationName}    
-                            </DataTable.Cell>
-                            <DataTable.Cell style={TrainTableStyle.trainTableCellText} textStyle={TrainTableStyle.trainTableCellTextContent}>
-                            </DataTable.Cell>
+                        <DataTable.Cell style={[TrainTableStyle.trainTableCellNr, TrainTableStyle.trainTableTrainNrCell]} textStyle={TrainTableStyle.trainTableCellTextContent}>
+                            {train.AdvertisedTrainIdent} 
+                        </DataTable.Cell>
+                        <DataTable.Cell style={TrainTableStyle.trainTableCellText} textStyle={TrainTableStyle.trainTableCellTextContent}>
+                            {train.FromLocationName}  
+                        </DataTable.Cell>
                         <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellAdvertisedTimeText} numeric>
                             {advertisedTime}
                         </DataTable.Cell>
                         <DataTable.Cell style={TrainTableStyle.trainTableCellNr} textStyle={TrainTableStyle.trainTableCellEstimatedTimeText} numeric>
                             {estimatedTime}
                         </DataTable.Cell>
+                        
                     </DataTable.Row>
                     <DataTable.Row style={TrainTableStyle.trainTableIconRow}>
                         <DataTable.Cell ><Ionicons name="train" color={"#217cff"} size={14}/> Tåg </DataTable.Cell>

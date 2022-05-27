@@ -52,4 +52,10 @@ export const trainTableCellNr = {
 
 export const trainTableCellText = {
     flex: 1,
+    marginLeft: 10
+
+};
+
+export const trainTableTrainNrCell = {
+    minWidth: 45
 };

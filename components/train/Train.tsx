@@ -47,10 +47,8 @@ export default function Train({isLoggedIn}: {isLoggedIn: Boolean}) {
                         <View style={{flexDirection: 'row'}} >
                            
                             <View style={{marginRight: 10}}>
-                                {isLoggedIn ?
+                                {isLoggedIn &&
                                     <Ionicons name="heart-outline" color={"#217cff"} size={22} onPress={() => navigation.navigate('Stationer')}/>
-                                    :
-                                    <Ionicons name="lock-closed-outline" color={"#217cff"} size={22} />
                                 }
                             </View>
 

@@ -4,10 +4,10 @@
     "slug": "proj",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/train.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/train.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

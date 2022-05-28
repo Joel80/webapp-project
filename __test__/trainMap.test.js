@@ -43,7 +43,7 @@ const resp = [
 // Set return value of mock for stationModel.getFavoriteStationData to resp1
 delayedTrainModel.getDelayedTrains= jest.fn().mockReturnValue(resp);
 
-test('Map markers for trains are rendered, when pressing a marker utils.calculateReach is called  ', async () => {
+test('Map markers for delayed trains are rendered, when pressing a marker utils.calculateReach is called  ', async () => {
 
 const {findAllByTestId} =  render(<TrainMap />);
 

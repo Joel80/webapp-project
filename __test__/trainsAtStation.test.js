@@ -46,7 +46,7 @@ const resp = [
  delayedTrainModel.getDelayedTrains.mockReturnValue(resp);
  
  
- test('Table of trains from the param station are rendered', async () => {
+ test('Table of trains from the param station are rendered, other stations are not rendered', async () => {
      
     const {findAllByText, getByText, queryByText} =  render(<TrainsAtStation route={route} />);
     

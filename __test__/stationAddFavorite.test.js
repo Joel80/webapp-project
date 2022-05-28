@@ -43,7 +43,7 @@ stationModel.getFavoriteStationsData = jest.fn().mockReturnValue(resp1);
 stationModel.getStations = jest.fn().mockReturnValue(resp2);
 
 
-test('Table of stations are rendered, favorite stations are not rendered, ', async () => {
+test('Table of stations are rendered, favorite stations are not rendered, pressing a station calls stationModel.createFavoriteStationsData ', async () => {
 
 const {findByText, queryByText} =  render(<StationAddFavorite navigation={navigation} />);
 

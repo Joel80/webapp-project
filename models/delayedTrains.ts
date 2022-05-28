@@ -7,20 +7,23 @@ import Station from '../interfaces/station';
 const trains = {
     getDelayedTrains: async function getDelayedTrains() {
         console.log("Calling getDelayedTrains");
+        
         const delayedTrainsArray: delayedTrainInterface[] = [];
 
+        // Get delayed trains from the api
         const response = await fetch(`${config.base_url}/delayed`);
-        //console.log(response);
+       
         const result = await response.json();
 
         const trains: Train[] = result.data;
 
+        // Get stations from the api
         const stations: Station[] = await stationModel.getStations();
 
+        // Array for ident for trains already found
         const markedTrains: string[] = [];
 
-        const fromCoords: Array<Array<number>> = []
-
+        // Loop through the trains
         for (const train of trains) {
             
             // Skip trains that are already accounted for (a train can appear several times
@@ -31,10 +34,12 @@ const trains = {
                 continue;
             }
 
+            // Add the train ident to markedTrains
             markedTrains.push(train.AdvertisedTrainIdent);
 
             //console.log(train.AdvertisedTrainIdent);
 
+            // Init vars
             let trainFromLocationName: string = "";
 
             let trainToLocationName: string = "";
@@ -54,15 +59,19 @@ const trains = {
             let trainDelayedBy: number = 0;
 
 
-           
+           // Loop through stations
             for (const station of stations) {
+                // Check if train has a FromLocation
                 if (train.FromLocation !== undefined) {
+                    // Match a station LocationSignature with the FromLocation
                     if (station.LocationSignature === train.FromLocation[0].LocationName) {
                         //console.log(station.LocationSignature, train.AdvertisedTrainIdent);
                         trainFromLocationName = station.AdvertisedLocationName;
+                        
+                        // Use regex to get the coordinates
                         trainFromCoords = station.Geometry.WGS84.match((/(\d+)(\.\d+)/g));
                   
-
+                        // Check that the coords can be parsed as floats
                         if (trainFromCoords && parseFloat(trainFromCoords[0]) !== NaN && parseFloat(trainFromCoords[1]) !== NaN) {
                  
                             trainFromLong = parseFloat(trainFromCoords[0]);
@@ -79,11 +88,13 @@ const trains = {
                     let dateEstimated = new Date(train.EstimatedTimeAtLocation);
                     
                     let dateAdvertised = new Date(train.AdvertisedTimeAtLocation);
-
+                    
+                    // Calculate the delay in mins.
                     trainDelayedBy = (dateEstimated.valueOf() - dateAdvertised.valueOf()) / 60000;
 
                 }
 
+                // Same as above for ToLocation
                 if (train.ToLocation !== undefined) {
                     if (station.LocationSignature === train.ToLocation[0].LocationName) {
                         trainToLocationName = station.AdvertisedLocationName;
@@ -99,6 +110,7 @@ const trains = {
                 }               
             }
 
+            // Build the train object
             let delayedTrain: delayedTrainInterface = {
                 ActivityId: train.ActivityId,
                 ActivityType: train.ActivityType,
@@ -120,7 +132,7 @@ const trains = {
             if (delayedTrain.FromLat !== -0.0) {
 
                 // Check if there are overlapping coords, if so slightly change them
-                // so that two trains dont overlap in map
+                // so that two trains dont overlap in the map
                 let counter = 0;
 
                 for (const train of delayedTrainsArray) {

@@ -5,6 +5,7 @@ import AuthFields from './AuthFields';
 import { showMessage } from "react-native-flash-message";
 import { AuthLoginProps } from '../../types/types';
 
+/**Login component */
 
 export default function Login({navigation, setIsLoggedIn}: {setIsLoggedIn(params: boolean): void, navigation: AuthLoginProps['navigation']}) {
     const[auth, setAuth] = useState<Partial<Auth>>({});

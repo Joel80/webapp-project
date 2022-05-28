@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import Login from './Login';
 import Register from './Register';
+
+/**Navigation stack for the auth screens */
 
 const Stack = createNativeStackNavigator();
 

@@ -6,7 +6,9 @@ import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
 import { StationSelectProps } from "../../types/types";
 
-
+/** Component that renders a list of stations each item has an onPress property that sends
+ * the station to the TrainsAtStation screen
+ */
 
 export default function StationModal({navigation}: StationSelectProps) {
     

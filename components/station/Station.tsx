@@ -9,6 +9,8 @@ import authModel from '../../models/auth';
 import { StationStackParamList } from '../../types/types';
 import { Ionicons } from '@expo/vector-icons';
 
+/** Navigation stack for the station screens */
+
 const Stack = createNativeStackNavigator<StationStackParamList>();
 
 export default function Station({setIsLoggedIn}: {setIsLoggedIn(params: Boolean): void} ) {

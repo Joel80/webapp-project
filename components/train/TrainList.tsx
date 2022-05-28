@@ -5,7 +5,7 @@ import delayedTrain from '../../interfaces/delayedTrain';
 import TrainTable from './TrainTable';
 import { TrainTableStyle } from '../../styles';
 
-/** Renders a list with all delayed trains */
+/** Renders a table with all delayed trains */
 function TrainList() {
     
     const [trains, setTrains] = useState<delayedTrain[]>([]);

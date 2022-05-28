@@ -9,6 +9,8 @@ import DelayedTrain from '../../interfaces/delayedTrain';
 import utils from '../../utils/utils';
 import { Ionicons } from '@expo/vector-icons';
 
+/** Renders a map with markers for delayed trains */
+
 export default function TrainMap() {
     const defaultLatitude = 60.128161 //59.3293235;
     const defaultLongitude = 18.643501 //18.0685808;
@@ -27,10 +29,12 @@ export default function TrainMap() {
         />
     );
 
+    // Used to show or hide information about the map
     const [showInformation, setShowInformation] = useState<Boolean>(false);
 
     const [errorMessage, setErrorMessage] = useState('');
     
+    // Sets the circle component in the MapView
     const [circle, setCircle] = useState(
         <Circle 
             center={{latitude: defaultLatitude, longitude: defaultLongitude}}
@@ -41,7 +45,7 @@ export default function TrainMap() {
     );
 
 
-
+    
     useEffect( () => {
         (async () => {
             setTrains(await delayedTrainsModel.getDelayedTrains());
@@ -49,6 +53,7 @@ export default function TrainMap() {
     }, []);
 
 
+    // Array with markers, each train gets a marker, when pressing a marker a circle element is created
     const markers = trains.map((train, index) => 
         <Marker
             key={index}
@@ -82,7 +87,7 @@ export default function TrainMap() {
     //console.log(markers);
 
     
-
+    // Get user position and display a marker
     useEffect ( () => {
         (async () => {
             const { status } = await Location.requestForegroundPermissionsAsync();
@@ -136,8 +141,6 @@ export default function TrainMap() {
             />
          
             </View>
-
-            
 
             <View>
                 {

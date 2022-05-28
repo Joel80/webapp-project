@@ -4,6 +4,7 @@ import { showMessage } from "react-native-flash-message";
 import { Forms } from "../../styles";
 import Auth from '../../interfaces/auth';
 
+/**Authfields component used for both login and registration screens */
 
 export default function AuthFields (
         {

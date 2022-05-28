@@ -6,6 +6,8 @@ import station from '../../interfaces/station';
 import { StationListStyle } from "../../styles";
 import { StationAddFavoriteProps } from "../../types/types";
 
+/** Component that displays a FlatList with non-favorite stations each item has an onPress property that sends a create call to the auth service*/
+
 export default function StationModal({navigation}: {navigation: StationAddFavoriteProps['navigation']}) {
     
     const [stations, setStations] = useState<station[]>([]);
@@ -18,6 +20,7 @@ export default function StationModal({navigation}: {navigation: StationAddFavori
         })();
     }, []);
 
+    // Filter out the non-favorite stations using every
     const stationList = stations
     .filter(station => favoriteStations.every(favoriteStation => 
         favoriteStation.LocationSignature !== station.LocationSignature))

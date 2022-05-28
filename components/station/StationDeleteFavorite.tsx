@@ -6,6 +6,9 @@ import favoriteStation from '../../interfaces/favoriteStation';
 import { StationListStyle } from '../../styles'
 import { StationDeleteFavoriteProps } from "../../types/types";
 
+/** Component that displays a FlatList with favorite stations, each item has a onPress property that sends a delete call to the auth service */
+
+
 export default function StationFavoriteModal({navigation}: {navigation: StationDeleteFavoriteProps['navigation']}) {
     
     const [favoriteStations, setFavoriteStations] = useState<favoriteStation[]>([]);

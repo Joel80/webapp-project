@@ -2,7 +2,7 @@ import { View, Pressable, Text } from 'react-native';
 import { StationFormStyle } from '../../styles/';
 import { StationEditProps } from "../../types/types";
 
-
+/** Component that displays two buttons, one that navigates to StationAddFavorite and one that navigates to StationDeleteFavorite */
 
 export default function StationForm({navigation}: {navigation: StationEditProps['navigation']}) {
     

@@ -5,6 +5,8 @@ import AuthFields from './AuthFields';
 import { showMessage } from "react-native-flash-message";
 import { AuthRegisterProps } from '../../types/types';
 
+/** Register component */
+
 export default function Register({navigation}: {navigation: AuthRegisterProps['navigation']}) {
     const[auth, setAuth] = useState<Partial<Auth>>({});
 

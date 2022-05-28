@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { StationFavoritesListProps } from "../../types/types";
 import { TrainTableStyle } from '../../styles';
 
-/**Renders a fancy list with favorite stations */
+/**Renders a list with gradient backgrounds with favorite stations */
 
 export default function StationList({ navigation, route}: StationFavoritesListProps) {
     

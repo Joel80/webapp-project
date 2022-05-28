@@ -21,6 +21,7 @@ function TrainsAtStationList({route}: {route: TrainsAtStationProps['route']}) {
         })();
     }, []);
 
+    // Filter out the trains at the station
     const trains = delayedTrainsAtStation.filter(train => train.FromLocationName === station.AdvertisedLocationName);
 
 

@@ -3,7 +3,7 @@ import authConfig from '../config/authConfig.json';
 import storage from "./storage";
 import station from "../interfaces/station";
 
-const trains = {
+const stations = {
     getStations: async function getStations() {
         console.log("Calling getStations");
 
@@ -163,4 +163,4 @@ const trains = {
     }
 };
 
-export default trains;
+export default stations;

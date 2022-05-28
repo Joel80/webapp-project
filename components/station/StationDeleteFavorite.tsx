@@ -6,7 +6,7 @@ import favoriteStation from '../../interfaces/favoriteStation';
 import { StationListStyle } from '../../styles'
 import { StationDeleteFavoriteProps } from "../../types/types";
 
-/** Component that displays a FlatList with favorite stations, each item has a onPress property that sends a delete call to the auth service */
+/** Component that displays a FlatList with favorite stations, each item has an onPress property that sends a delete call to the auth service */
 
 
 export default function StationFavoriteModal({navigation}: {navigation: StationDeleteFavoriteProps['navigation']}) {
@@ -23,7 +23,7 @@ export default function StationFavoriteModal({navigation}: {navigation: StationD
     const stationList = favoriteStations
     .sort((a, b) => (a.AdvertisedLocationName > b.AdvertisedLocationName) ? 1 : -1);
 
-    console.log({stationList})
+    //console.log({stationList})
 
 
     const Item = ( {item, onPress }: {item: favoriteStation, onPress(): void}) => (
@@ -41,7 +41,7 @@ export default function StationFavoriteModal({navigation}: {navigation: StationD
             <Item
                 item={item}
                 onPress= { () => {
-                    console.log(`pressing id: ${item.id}`);
+                    //console.log(`pressing id: ${item.id}`);
                     (async () => {
                         await stationModel.deleteFavoriteStationData(item.id);
                         navigation.goBack();

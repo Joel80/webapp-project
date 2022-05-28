@@ -62,13 +62,13 @@ export default function TrainMap() {
             identifier={train.FromLocationName}
             description={`Tåg ${train.AdvertisedTrainIdent} Försenat ${train.DelayedBy} min.`}
             onPress={() => {
-                console.log("Pressing the marker");
+                //console.log("Pressing the marker");
                 let reach = utils.calculateReach(train.DelayedBy);
                 if (reach < 0) {
                     reach = 0;
                 }
 
-                console.log(reach);
+                //console.log(reach);
                 const walkingCircle = 
                 <Circle 
                     center={{latitude: train.FromLat, longitude: train.FromLong  }}

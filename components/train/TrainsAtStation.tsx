@@ -4,6 +4,7 @@ import delayedTrainsModel from '../../models/delayedTrains';
 import delayedTrain from '../../interfaces/delayedTrain';
 import TrainTable from './TrainTable';
 import { TrainsAtStationProps } from '../../types/types';
+import { InformationText } from '../../styles';
 
 
 /** Renders a list with all delayed trains at a certain station*/
@@ -27,7 +28,11 @@ function TrainsAtStationList({route}: {route: TrainsAtStationProps['route']}) {
 
     return (
         <View>
-            <TrainTable trains={trains} />
+            { trains.length > 0 ?
+                <TrainTable trains={trains} /> :
+                <Text style={InformationText.informationText}>Inga försenade tåg vid stationen</Text>
+            }
+            
         </View>
 
     );

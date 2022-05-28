@@ -63,9 +63,7 @@ export default function StationList({ navigation, route}: StationFavoritesListPr
                                 </Text>
                             </View>
                             <View style={FavoriteStationList.rightArrowView}>
-                                <Text style={FavoriteStationList.rightArrow}>
-                                    {'>'}
-                                </Text>
+                                <Ionicons name="chevron-forward" color={"#fff"} size={22}/>
                             </View>   
                         </View>
                     </View>
@@ -92,9 +90,7 @@ export default function StationList({ navigation, route}: StationFavoritesListPr
                                 </Text>
                             </View>
                             <View style={FavoriteStationList.rightArrowView}>
-                                <Text style={FavoriteStationList.rightArrow}>
-                                    {'>'}
-                                </Text>
+                                <Ionicons name="chevron-forward" color={"#fff"} size={22}/>
                             </View>   
                         </View>
                     </View>

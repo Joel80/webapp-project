@@ -45,57 +45,41 @@ export default function StationList({ navigation, route}: StationFavoritesListPr
             {index % 2 === 0 &&
                 <LinearGradient colors = {["#48b7e9", "#0675a2"]}>
                     <View style={FavoriteStationList.item}>
-                        <View style={FavoriteStationList.leftView}>
-                            <View style={FavoriteStationList.icon}>
-                                <Ionicons name="train" color={"#fff"} size={22}/>
-                            </View>
-                            <View style={FavoriteStationList.leftStationNameText}>
-                                <Text style={FavoriteStationList.leftStationNameText}>
-                                    {item.AdvertisedLocationName}
-                                </Text>
-                                <Text style={FavoriteStationList.leftSmallText}>
-                                    Tågstation
-                                </Text>
-                            </View>
-                            <View style= {FavoriteStationList.rightTextView}>
-                                <Text style={FavoriteStationList.textRight}>
-                                    Antal spår: {item.PlatformLine?.length}
-                                </Text>
-                            </View>
-                            <View style={FavoriteStationList.rightArrowView}>
-                                <Text style={FavoriteStationList.rightArrow}>
-                                    {'>'}
-                                </Text>
-                            </View>   
+                       
+                        <View style={FavoriteStationList.nameView}>
+                            <Ionicons name="train" color={"#fff"} size={22}/>
+                            <Text style={FavoriteStationList.text}>
+                                {item.AdvertisedLocationName}
+                            </Text>
+                            <Text style={FavoriteStationList.textRight}>
+                                Antal spår: {item.PlatformLine?.length}
+                            </Text>
+                        </View>
+                        <View style={FavoriteStationList.smallTextView}>
+                            <Text style={FavoriteStationList.smallText}>
+                                Tågstation
+                            </Text>
                         </View>
                     </View>
+                    
                 </LinearGradient>
             }
             {index % 2 !== 0 && 
                 <LinearGradient colors = {["#25af4e",  "#00963d"]}>
                     <View style={FavoriteStationList.item}>
-                        <View style={FavoriteStationList.leftView}>
-                            <View style={FavoriteStationList.icon}>
-                                <Ionicons name="train" color={"#fff"} size={22}/>
-                            </View>
-                            <View style={FavoriteStationList.leftStationNameText}>
-                                <Text style={FavoriteStationList.leftStationNameText}>
-                                    {item.AdvertisedLocationName}
-                                </Text>
-                                <Text style={FavoriteStationList.leftSmallText}>
-                                    Tågstation
-                                </Text>
-                            </View>
-                            <View style= {FavoriteStationList.rightTextView}>
-                                <Text style={FavoriteStationList.textRight}>
-                                    Antal spår: {item.PlatformLine?.length}
-                                </Text>
-                            </View>
-                            <View style={FavoriteStationList.rightArrowView}>
-                                <Text style={FavoriteStationList.rightArrow}>
-                                    {'>'}
-                                </Text>
-                            </View>   
+                        <View style={FavoriteStationList.nameView}>
+                            <Ionicons name="train" color={"#fff"} size={22}/>
+                            <Text style={FavoriteStationList.text}>
+                                {item.AdvertisedLocationName}
+                            </Text>
+                            <Text style={FavoriteStationList.textRight}>
+                                Antal spår: {item.PlatformLine?.length}
+                            </Text>
+                        </View>
+                        <View style={FavoriteStationList.smallTextView}>
+                            <Text style={FavoriteStationList.smallText}>
+                                Tågstation
+                            </Text>
                         </View>
                     </View>
                 </LinearGradient>

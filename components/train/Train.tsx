@@ -26,7 +26,7 @@ export default function Train({isLoggedIn}: {isLoggedIn: Boolean}) {
                         headerRight: () => 
                         <View style={{flexDirection: 'row'}} >
                             <View>
-                                <Ionicons name="navigate-outline" color={"#217cff"} size={22} 
+                                <Ionicons name="navigate-outline" color={"#217cff"} size={24} 
                                     onPress={() => navigation.navigate('Karta')}
                                 />
                                 
@@ -48,7 +48,7 @@ export default function Train({isLoggedIn}: {isLoggedIn: Boolean}) {
                            
                             <View style={{marginRight: 10}}>
                                 {isLoggedIn &&
-                                    <Ionicons name="heart-outline" color={"#217cff"} size={22} onPress={() => navigation.navigate('Stationer')}/>
+                                    <Ionicons name="heart-outline" color={"#217cff"} size={27} onPress={() => navigation.navigate('Stationer')}/>
                                 }
                             </View>
 

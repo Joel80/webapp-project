@@ -34,7 +34,7 @@ export const trainTableCellAdvertisedTimeText = {
 };
 
 export const trainTableCellTextContent = {
-    fontWeight: 'bold' as 'bold',
+    fontWeight: '600' as '600',
     fontSize: 17
 }
 

@@ -27,7 +27,7 @@ export const leftTextView = {
 
 export const leftStationNameText = {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 17,
     marginLeft: 5,
     marginBottom: 0,
     fontWeight: "600" as "600"
